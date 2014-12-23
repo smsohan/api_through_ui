@@ -1,0 +1,6 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+cakeside_com:
+  host: www.cakeside.com
+  url: /cakes
+  http_method: GET

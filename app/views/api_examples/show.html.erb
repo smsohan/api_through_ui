@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Host:</strong>
+  <%= @api_example.host %>
+</p>
+
+<p>
+  <strong>Url:</strong>
+  <%= @api_example.url %>
+</p>
+
+<p>
+  <strong>Http method:</strong>
+  <%= @api_example.http_method %>
+</p>
+
+<%= link_to 'Edit', edit_api_example_path(@api_example) %> |
+<%= link_to 'Back', api_examples_path %>

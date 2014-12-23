@@ -1,0 +1,2 @@
+module ApiHostsHelper
+end

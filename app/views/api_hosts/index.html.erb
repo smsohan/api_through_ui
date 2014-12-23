@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="small-1 columns"></div>
+  <div class="small-10 columns">
+
+    <h1>API Hosts</h1>
+
+
+    <ol>
+      <% @api_hosts.each do |api_host| %>
+        <li><%= link_to api_host, api_host_path(api_host.parameterize) %> </li>
+      <% end %>
+    </ol>
+  </div>
+  <div class="small-1 columns"></div>
+</div>
+

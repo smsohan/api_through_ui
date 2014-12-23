@@ -1,0 +1,2 @@
+module ApiExamplesHelper
+end

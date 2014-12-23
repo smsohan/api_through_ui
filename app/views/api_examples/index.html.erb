@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Api Examples</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Host</th>
+      <th>Url</th>
+      <th>Http method</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @api_examples.each do |api_example| %>
+      <tr>
+        <td><%= api_example.host %></td>
+        <td><%= api_example.url %></td>
+        <td><%= api_example.http_method %></td>
+        <td><%= link_to 'Show', api_example %></td>
+        <td><%= link_to 'Edit', edit_api_example_path(api_example) %></td>
+        <td><%= link_to 'Destroy', api_example, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Api example', new_api_example_path %>
