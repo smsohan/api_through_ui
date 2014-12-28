@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :api_resources, only: [:index]
+
   resources :api_hosts, only: [:index]
   resources :api_versions, only: [:index, :show]
 

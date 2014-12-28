@@ -7,7 +7,7 @@
 
 <ol>
   <% @api_versions.each do |api_version| %>
-    <li><%= api_version.name -%></li>
+    <li><%= link_to api_version.name, api_resources_path(api_host: @api_host.name, api_version: api_version.name) -%></li>
   <% end %>
 </ol>
 

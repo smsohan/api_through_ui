@@ -7,7 +7,7 @@ class ApiVersion
     api_host.api_examples.where(version: name)
   end
 
-  def resources
+  def api_resources
     api_examples.distinct(:resource).map{|resource| ApiResource.new(name: resource, api_version: self)}
   end
 
