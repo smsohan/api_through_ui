@@ -1,9 +1,17 @@
 development:
   sessions:
     default:
-      database: apis
+      database: apis_development
       hosts:
         - localhost:27017
+      options:
+  options:
+production:
+  sessions:
+    default:
+      database: apis
+      hosts:
+        - <%= ENV['MONGODB_PORT_27017_TCP_ADDR'] %>:27017
       options:
   options:
 test:
