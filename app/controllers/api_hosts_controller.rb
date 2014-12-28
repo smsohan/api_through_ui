@@ -1,10 +1,10 @@
 class ApiHostsController < ApplicationController
   def index
-    @api_hosts = ApiExample.distinct(:host).sort
+    @api_hosts = ApiHost.all.sort_by(&:name)
   end
 
   def versions
-    @api_host = params[:api_host]
-    @versions = ApiExample.where(host: @api_host).distinct(:version).sort.reverse
+    @api_host = ApiHost.new(name: params[:api_host])
+    @versions = @api_host.versions.sort_by(&:name).reverse
   end
 end
