@@ -1,0 +1,18 @@
+<h1><%= @api_host.name %></h1>
+<h2><%= @api_version.name %></h2>
+<h3><%= @api_resource.name %></h3>
+
+<h3>ACTIONS</h3>
+
+<ol>
+<% @api_actions.each do |api_action| %>
+  <li>
+    <%= link_to api_action.name, details_api_action_path(
+      api_action: api_action.name,
+      api_host: api_action.api_host.name,
+      api_version: api_action.api_version.name,
+      api_resource: api_action.api_resource.name
+    ) %>
+  </li>
+<% end %>
+</ol>
