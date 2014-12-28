@@ -1,9 +1,6 @@
 Rails.application.routes.draw do
-  resources :api_hosts, only: [:index] do
-    collection do
-      get :versions
-    end
-  end
+  resources :api_hosts, only: [:index]
+  resources :api_versions, only: [:index, :show]
 
   resources :api_examples
 

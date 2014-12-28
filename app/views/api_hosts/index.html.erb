@@ -3,6 +3,6 @@
 
 <ol>
   <% @api_hosts.each do |api_host| %>
-    <li><%= link_to api_host, versions_api_hosts_path(api_host: api_host.name) %> </li>
+    <li><%= link_to api_host.name, api_versions_path(api_host: api_host.name) %> </li>
   <% end %>
 </ol>

@@ -13,10 +13,4 @@ class ApiHostsControllerTest < ActionController::TestCase
     assert_equal %w{api.github.com cakeside.com}, assigns(:api_hosts).map(&:name)
   end
 
-  test "shows the unique versions on the versions page" do
-    get :versions, api_host: 'cakeside.com'
-    assert_response :success
-    assert_equal %w{v2 v1}, assigns(:versions).map(&:name)
-  end
-
 end

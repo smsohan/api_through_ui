@@ -8,7 +8,11 @@ class ApiHost
   end
 
   def versions
-    ApiExample.where(host: name).distinct(:version).map{|version| ApiVersion.new(name: version, api_host: self)}
+    api_examples.distinct(:version).map{|version| ApiVersion.new(name: version, api_host: self)}
+  end
+
+  def api_examples
+    ApiExample.where(host: name)
   end
 
 end
