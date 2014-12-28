@@ -5,6 +5,30 @@
 
 <h4>Examples</h4>
 
-<%= @api_action.api_examples.each do |api_example| %>
-  <h5><%= api_example.url %></h5>
+<% @api_action.api_examples.each do |api_example| %>
+  <pre>
+    <%= api_example.http_method %> <%= api_example.url %>
+  </pre>
+  <h5> Request Headers</h5>
+  <pre>
+  <% api_example.request_headers.each_pair do |key, value| %>
+    <%= key %>: <%= value %>
+  <% end %>
+  </pre>
+  <h5> Request Body</h5>
+  <pre>
+  <%= api_example.request_body %>
+  </pre>
+
+  <h5> Response Headers</h5>
+  <pre>
+  <% api_example.response_headers.each_pair do |key, value| %>
+    <%= key %>: <%= value %>
+  <% end %>
+  </pre>
+
+  <h5> Response Body</h5>
+  <pre>
+  <%= JSON.pretty_generate JSON.parse api_example.response_body %>
+  </pre>
 <% end %>

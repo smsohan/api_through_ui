@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
-  resources :api_resources, only: [:index, :show]
-
   resources :api_hosts, only: [:index]
   resources :api_versions, only: [:index, :show]
 
+  resources :api_resources, only: [:index, :show]
+
   resources :api_examples
-  get 'api_actions/details'
+  get 'api_actions/details', as: :details_api_action
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

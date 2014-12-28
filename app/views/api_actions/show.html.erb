@@ -1,0 +1,10 @@
+<h1><%= @api_host.name %></h1>
+<h2><%= @api_version.name %></h2>
+<h3><%= @api_resource.name %></h3>
+<h4><%= @api_action.name %></h3>
+
+<h4>Examples</h4>
+
+<% @api_action.api_examples.each do |api_example| %>
+  <h5><%#= api_example.url %></h5>
+<% end %>
