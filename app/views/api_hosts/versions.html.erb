@@ -1,0 +1,13 @@
+<h1>API</h1>
+
+<%= @api_host %>
+
+
+<h1>Available Versions</h1>
+
+<ol>
+  <% @versions.each do |version| %>
+    <li><%= version -%></li>
+  <% end %>
+</ol>
+

@@ -1,16 +1,8 @@
-<div class="row">
-  <div class="small-1 columns"></div>
-  <div class="small-10 columns">
-
-    <h1>API Hosts</h1>
+<h1>API Hosts</h1>
 
 
-    <ol>
-      <% @api_hosts.each do |api_host| %>
-        <li><%= link_to api_host, api_host_path(api_host.parameterize) %> </li>
-      <% end %>
-    </ol>
-  </div>
-  <div class="small-1 columns"></div>
-</div>
-
+<ol>
+  <% @api_hosts.each do |api_host| %>
+    <li><%= link_to api_host, versions_api_hosts_path(api_host: CGI.escape(api_host)) %> </li>
+  <% end %>
+</ol>

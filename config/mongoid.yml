@@ -1,7 +1,7 @@
 development:
   sessions:
     default:
-      database: apis_development
+      database: apis
       hosts:
         - localhost:27017
       options:
