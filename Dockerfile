@@ -16,7 +16,7 @@ WORKDIR /api_through_ui
 ADD ./Gemfile /api_through_ui/Gemfile
 ADD ./Gemfile.lock /api_through_ui/Gemfile.lock
 
-RUN bundle --without development test
+RUN bundle
 
 ADD . /api_through_ui
 
