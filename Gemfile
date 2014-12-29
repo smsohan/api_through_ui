@@ -31,7 +31,7 @@ gem 'unicorn'
 # gem 'capistrano-rails', group: :development
 
 gem 'mongoid'
-gem 'zurb-foundation'
+gem 'foundation-rails'
 
 group :development, :test do
   # Call 'debugger' anywhere in the code to stop execution and get a debugger console

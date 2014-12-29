@@ -12,9 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require foundation
+//= require turbolinks
 //= require_tree .
-
-
-$(document).foundation();

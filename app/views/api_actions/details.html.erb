@@ -5,30 +5,46 @@
 
 <h4>Examples</h4>
 
-<% @api_action.api_examples.each do |api_example| %>
-  <pre>
-    <%= api_example.http_method %> <%= api_example.url %>
-  </pre>
-  <h5> Request Headers</h5>
-  <pre>
-  <% api_example.request_headers.each_pair do |key, value| %>
-    <%= key %>: <%= value %>
-  <% end %>
-  </pre>
-  <h5> Request Body</h5>
-  <pre>
-  <%= api_example.request_body %>
-  </pre>
+<% api_examples = @api_action.api_examples %>
 
-  <h5> Response Headers</h5>
-  <pre>
-  <% api_example.response_headers.each_pair do |key, value| %>
-    <%= key %>: <%= value %>
-  <% end %>
-  </pre>
-
-  <h5> Response Body</h5>
-  <pre>
-  <%= JSON.pretty_generate JSON.parse api_example.response_body %>
-  </pre>
+<div>
+  <dl class="tabs vertical" data-tab>
+    <dd class="active"><a href="#panel1">Example 1</a></dd>
+    <% 2.upto(api_examples.length) do |index| %>
+      <dd><a href="#panel<%= index %>">Example <%= index %></a></dd>
+    <% end %>
+  </dl>
+  <div class="tabs-content vertical">
+    <% @api_action.api_examples.each_with_index do |api_example, index| %>
+      <div class="content <%= index == 0 ? 'active' : '' %>" id="panel<%=index + 1 %>">
+        <h5>Example <%= index + 1 %></h5>
+        <h5>Request URL</h5>
+        <pre class="panel">
+<%= api_example.http_method %> <%= api_example.url %>
+        </pre>
+        <h5> Request Headers</h5>
+        <pre class="panel">
+<% api_example.request_headers.each_pair do |key, value| %>
+<%= key %>: <%= value %>
 <% end %>
+        </pre>
+        <h5> Request Body</h5>
+        <pre class="panel">
+<%= api_example.request_body %>
+        </pre>
+
+        <h5> Response Headers</h5>
+        <pre class="panel">
+<% api_example.response_headers.each_pair do |key, value| %>
+  <%= key %>: <%= value %>
+<% end %>
+        </pre>
+
+        <h5> Response Body</h5>
+        <pre class="panel">
+<%= JSON.pretty_generate JSON.parse api_example.response_body %>
+        </pre>
+      </div>
+    <% end %>
+  </div>
+</div>
