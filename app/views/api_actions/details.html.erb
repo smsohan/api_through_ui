@@ -18,16 +18,26 @@
     <% @api_action.api_examples.each_with_index do |api_example, index| %>
       <div class="content <%= index == 0 ? 'active' : '' %>" id="panel<%=index + 1 %>">
         <h5>Example <%= index + 1 %></h5>
+
         <h5>Request URL</h5>
         <pre class="panel">
-<%= api_example.http_method %> <%= api_example.url %>
+<%= api_example.http_method %> <%= api_example.url -%>
         </pre>
+
+        <h5>Query Parameters</h5>
+        <pre class="panel">
+<% api_example.query.each_pair do |key, value| %>
+<%= key %>: <%= value %>
+<% end -%>
+        </pre>
+
         <h5> Request Headers</h5>
         <pre class="panel">
 <% api_example.request_headers.each_pair do |key, value| %>
 <%= key %>: <%= value %>
 <% end %>
         </pre>
+
         <h5> Request Body</h5>
         <pre class="panel">
 <%= api_example.request_body %>
