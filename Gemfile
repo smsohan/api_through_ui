@@ -32,6 +32,7 @@ gem 'unicorn'
 
 gem 'mongoid'
 gem 'foundation-rails'
+gem 'breadcrumbs_on_rails'
 
 group :development, :test do
   # Call 'debugger' anywhere in the code to stop execution and get a debugger console

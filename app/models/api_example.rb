@@ -5,6 +5,7 @@ class ApiExample
   field :url, type: String
   field :http_method, type: String
   field :version, type: String
+  field :description, type: String
   field :query, type: Hash, default: {}
   field :requestHeaders, type: Hash, as: :request_headers
   field :requestBody, type: String, as: :request_body

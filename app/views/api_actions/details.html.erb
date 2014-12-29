@@ -1,9 +1,4 @@
-<h1><%= @api_host.name %></h1>
-<h2><%= @api_version.name %></h2>
-<h3><%= @api_resource.name %></h3>
-<h4><%= @api_action.name %></h3>
-
-<h4>Examples</h4>
+<h2>Examples</h2>
 
 <% api_examples = @api_action.api_examples %>
 
@@ -17,40 +12,42 @@
   <div class="tabs-content vertical">
     <% @api_action.api_examples.each_with_index do |api_example, index| %>
       <div class="content <%= index == 0 ? 'active' : '' %>" id="panel<%=index + 1 %>">
-        <h5>Example <%= index + 1 %></h5>
+        <h3>Example <%= index + 1 %></h3>
 
-        <h5>Request URL</h5>
+        <p><%= api_example.description || 'No description given' %></p>
+
+        <h3>Request URL</h3>
         <pre class="panel">
 <%= api_example.http_method %> <%= api_example.url -%>
         </pre>
 
-        <h5>Query Parameters</h5>
+        <h3>Query Parameters</h3>
         <pre class="panel">
 <% api_example.query.each_pair do |key, value| %>
 <%= key %>: <%= value %>
 <% end -%>
         </pre>
 
-        <h5> Request Headers</h5>
+        <h3> Request Headers</h3>
         <pre class="panel">
 <% api_example.request_headers.each_pair do |key, value| %>
 <%= key %>: <%= value %>
 <% end %>
         </pre>
 
-        <h5> Request Body</h5>
+        <h3> Request Body</h3>
         <pre class="panel">
 <%= api_example.request_body %>
         </pre>
 
-        <h5> Response Headers</h5>
+        <h3> Response Headers</h3>
         <pre class="panel">
 <% api_example.response_headers.each_pair do |key, value| %>
   <%= key %>: <%= value %>
 <% end %>
         </pre>
 
-        <h5> Response Body</h5>
+        <h3> Response Body</h3>
         <pre class="panel">
 <%= JSON.pretty_generate JSON.parse api_example.response_body %>
         </pre>

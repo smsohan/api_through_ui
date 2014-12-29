@@ -11,16 +11,26 @@
 </head>
 <body>
 
-<div class="row">
-  <div class="small-1 columns"></div>
-  <div class="small-10 columns">
-    <%= yield %>
+  <div class="row">
+    <div class="small-12 small-centered columns">
+      <h1><%= link_to 'ApiThrough', root_path %></h1>
+    </div>
   </div>
-  <div class="small-1 columns"></div>
-</div>
 
-<script>
+  <div class="row">
+    <div class="small-12 small-centered columns">
+      <%= render_breadcrumbs %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-12 small-centered columns">
+      <%= yield %>
+    </div>
+  </div>
+
+  <script>
   $(document).foundation();
-</script>
+  </script>
 </body>
 </html>
