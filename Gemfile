@@ -8,9 +8,6 @@ gem 'therubyracer', platforms: :ruby
 
 gem 'jquery-rails'
 gem 'turbolinks'
-gem 'jbuilder', '~> 2.0'
-gem 'sdoc', '~> 0.4.0', group: :doc
-
 gem 'unicorn'
 gem 'mongoid'
 gem 'foundation-rails'
@@ -23,4 +20,3 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'capistrano'
 end
-
