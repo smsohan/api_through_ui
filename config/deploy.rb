@@ -10,7 +10,9 @@ namespace :deploy do
   task :build_and_run do
     on roles(:app) do
       within current_path do
-        execute :build_and_run
+        with SECRET_KEY_BASE: ENV['SECRET_KEY_BASE'] do
+          execute :build_and_run
+        end
       end
     end
   end
