@@ -1,0 +1,7 @@
+.git
+.gitignore
+log
+test
+tmp
+.travis.yml
+app/assets

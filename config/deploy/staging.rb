@@ -1,0 +1,1 @@
+role :app, %w{root@api_through.somsohan.com}
