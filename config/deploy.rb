@@ -13,7 +13,7 @@ namespace :deploy do
     on roles(:app) do
 
       within current_path do
-        secret_key_base = execute('cat', 'secrets/SECRET_KEY_BASE').strip
+        secret_key_base = capture('cat', 'secrets/SECRET_KEY_BASE').strip
 
         with SECRET_KEY_BASE: secret_key_base do
           execute :build_and_run
@@ -22,6 +22,6 @@ namespace :deploy do
     end
   end
 
-  after :finished, [:build_and_run]
+  after :finished, :build_and_run
 
 end
