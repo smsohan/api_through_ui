@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="small-6 small-centered columns">
+    <h2>How it Works</h2>
+    <p>
+      SpyREST automatically generates REST API documentation based on real API calls. As the name suggests, SpyREST works as a software in the middle between a API client and the API to capture the web traffic. It then adds the necessary sugar and butter to bake the API documentation with enhanced information. You can run the following command to see it in practice:
+    </p>
+
+    <pre>
+curl -k -x http://spyrest.com:9081 --headers "Accept: application/vnd.github.v3+json"
+--header "x-spy-rest-desc: Searches assembly language repositories for the word tetris"
+"https://api.github.com/search/repositories?q=tetris+language:assembly&sort=stars&order=desc"
+    </pre>
+
+    <p>And see the generated documentation <%= link_to 'here', details_api_action_path(api_host: 'api.github.com',
+      api_version: 'v3',
+      api_resource: 'repositories',
+      api_action: 'GET /search/repositories') %></p>
+
+      <p>Under the hood this is what happens:</p>
+
+      <ol>
+        <li>
+          The following option <code>curl</code> to use SpyREST as a proxy, enabling SpyREST to capture the traffic
+          <pre>
+-x http://spyrest.com:9081
+          </pre>
+        </li>
+        <li>
+          SpyREST automatically detects the version of the API to be <code>v3</code> from the following header
+          <pre>
+"Accept: application/vnd.github.v3+json"
+          </pre>
+        </li>
+        <li>
+          SpyREST also guesses the API resource to be <code>repositories</code> from the URL
+          <pre>
+/search/repositories
+          </pre>
+        </li>
+        <li>
+          The custom header <code>x-spy-rest-desc</code> allows us to provide a description for the API so that SpyREST can display it for its users
+          <pre>
+"x-spy-rest-desc: Searches assembly language repositories for the word tetris"
+          </pre>
+        </li>
+      </ol>
+
+
+    </div>
+  </div>
+

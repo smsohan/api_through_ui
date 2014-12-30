@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'pages/how_it_works', as: :how_it_works
+
   resources :api_hosts, only: [:index]
   resources :api_versions, only: [:index, :show]
 
