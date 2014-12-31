@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   resources :api_resources, only: [:index, :show]
 
-  resources :api_examples
+  resources :api_examples, only: [:show]
   get 'api_actions/details', as: :details_api_action
 
   # The priority is based upon order of creation: first created -> highest priority.

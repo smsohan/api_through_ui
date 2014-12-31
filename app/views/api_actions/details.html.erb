@@ -6,7 +6,7 @@
 
   <div>
     <h2>Query Parameters</h2>
-    <table>
+    <table class="small-12">
       <thead>
         <tr>
           <th>Parameter name</th>
@@ -31,67 +31,30 @@
       </tbody>
     </table>
   </div>
-
 <% end %>
 
 
 <div>
   <h2>Examples</h2>
-  <dl class="tabs vertical" data-tab>
-    <dd class="active"><a href="#panel1">Example 1</a></dd>
-    <% 2.upto(api_examples.length) do |index| %>
-      <dd><a href="#panel<%= index %>">Example <%= index %></a></dd>
+  <dl id="example-tabs" class="tabs vertical" data-tab>
+    <dd class="active">
+      <a href="#panel1">Example 1</a>
+    </dd>
+    <% 2.upto(api_examples.count) do |index| %>
+      <dd>
+        <%=link_to "Example #{index}", "#panel#{index}",
+          data: {example_index: index,
+            load_path: api_example_path(index, api_host: @api_host.name,
+              api_version: @api_version.name,
+              api_resource: @api_resource.name,
+              api_action: @api_action.name),
+
+          }
+        %>
+      </dd>
     <% end %>
   </dl>
-  <div class="tabs-content vertical">
-    <% @api_action.api_examples.each_with_index do |api_example, index| %>
-      <div class="content <%= index == 0 ? 'active' : '' %>" id="panel<%=index + 1 %>">
-        <h3>Example <%= index + 1 %></h3>
-
-        <p><%= api_example.description || 'No description given' %></p>
-
-        <h3>Request URL</h3>
-        <pre class="panel">
-<%= api_example.http_method %> <%= api_example.url -%>
-        </pre>
-
-        <% if api_example.query.present? %>
-        <h3>Query Parameters</h3>
-        <pre class="panel">
-<% api_example.query.each_pair do |key, value| %>
-<%= key %>: <%= value %>
-<% end -%>
-        </pre>
-        <% end %>
-
-        <h3> Request Headers</h3>
-        <pre class="panel">
-<% api_example.request_headers.each_pair do |key, value| %>
-<%= key %>: <%= value %>
-<% end %>
-        </pre>
-
-        <% if api_example.request_body.present? %>
-        <h3> Request Body</h3>
-        <pre class="panel">
-<%= api_example.request_body %>
-        </pre>
-        <% end %>
-
-        <h3> Response Headers</h3>
-        <pre class="panel">
-<% api_example.response_headers.each_pair do |key, value| %>
-  <%= key %>: <%= value %>
-<% end %>
-        </pre>
-
-        <% if api_example.response_body %>
-        <h3> Response Body</h3>
-        <pre class="panel">
-<%= api_example.prettified_response %>
-        </pre>
-        <% end %>
-      </div>
-    <% end %>
+  <div id="example-panels" class="tabs-content vertical">
+    <%= render partial: 'api_examples/api_example', collection: @api_action.api_examples, as: :api_example %>
   </div>
 </div>

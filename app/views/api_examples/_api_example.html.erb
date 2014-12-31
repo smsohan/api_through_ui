@@ -1,0 +1,49 @@
+<% index = api_example_counter %>
+
+<div class="content <%= index == 0 ? 'active' : '' %>" id="panel<%=index + 1 %>">
+      <h3>Example <%= index + 1 %></h3>
+
+      <p><%= api_example.description || 'No description given' %></p>
+
+      <h3>Request URL</h3>
+      <pre class="panel">
+<%= api_example.http_method %> <%= api_example.url -%>
+      </pre>
+
+      <% if api_example.query.present? %>
+      <h3>Query Parameters</h3>
+      <pre class="panel">
+<% api_example.query.each_pair do |key, value| %>
+<%= key %>: <%= value %>
+<% end -%>
+      </pre>
+      <% end %>
+
+      <h3> Request Headers</h3>
+      <pre class="panel">
+<% api_example.request_headers.each_pair do |key, value| %>
+<%= key %>: <%= value %>
+<% end %>
+      </pre>
+
+      <% if api_example.request_body.present? %>
+      <h3> Request Body</h3>
+      <pre class="panel">
+<%= api_example.request_body %>
+      </pre>
+      <% end %>
+
+      <h3> Response Headers</h3>
+      <pre class="panel">
+<% api_example.response_headers.each_pair do |key, value| %>
+<%= key %>: <%= value %>
+<% end %>
+      </pre>
+
+      <% if api_example.response_body %>
+      <h3> Response Body</h3>
+      <pre class="panel">
+<%= api_example.prettified_response %>
+      </pre>
+      <% end %>
+    </div>
