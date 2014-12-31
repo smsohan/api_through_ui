@@ -12,7 +12,7 @@ class ApiAction
     queries = api_examples.distinct(:query).reduce(Hash.new([])) do |combined_queries, query|
 
       query.each_pair do |key, value|
-        combined_queries[key] += [value]
+        combined_queries[key] |= [value]
       end
       combined_queries
     end

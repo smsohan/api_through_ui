@@ -1,36 +1,42 @@
-<h2>Examples</h2>
+<h2><%= @api_action.name %></h2>
 
 <% api_examples = @api_action.api_examples %>
 
+<% if @api_action.query_parameters.present? %>
 
-<div>
-  <h2>Query Parameters</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>Parameter name</th>
-        <th>Example values</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @api_action.query_parameters.each do |query_parameter| %>
+  <div>
+    <h2>Query Parameters</h2>
+    <table>
+      <thead>
         <tr>
-          <td><code><%= query_parameter.name %></code></td>
-          <td>
-            <ul>
-              <% query_parameter.example_values.each do |example_value|%>
-                <li><%= example_value %></li>
-              <% end %>
-            </ul>
-          </td>
+          <th>Parameter name</th>
+          <th>Type</th>
+          <th>Example values</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
+      </thead>
+      <tbody>
+        <% @api_action.query_parameters.each do |query_parameter| %>
+          <tr>
+            <td><code><%= query_parameter.name %></code></td>
+            <td><%= query_parameter.type_name %></td>
+            <td>
+              <ul>
+                <% query_parameter.example_values.each do |example_value|%>
+                  <li><%= example_value %></li>
+                <% end %>
+              </ul>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+<% end %>
 
 
 <div>
+  <h2>Examples</h2>
   <dl class="tabs vertical" data-tab>
     <dd class="active"><a href="#panel1">Example 1</a></dd>
     <% 2.upto(api_examples.length) do |index| %>
@@ -49,12 +55,14 @@
 <%= api_example.http_method %> <%= api_example.url -%>
         </pre>
 
+        <% if api_example.query.present? %>
         <h3>Query Parameters</h3>
         <pre class="panel">
 <% api_example.query.each_pair do |key, value| %>
 <%= key %>: <%= value %>
 <% end -%>
         </pre>
+        <% end %>
 
         <h3> Request Headers</h3>
         <pre class="panel">
@@ -63,10 +71,12 @@
 <% end %>
         </pre>
 
+        <% if api_example.request_body.present? %>
         <h3> Request Body</h3>
         <pre class="panel">
 <%= api_example.request_body %>
         </pre>
+        <% end %>
 
         <h3> Response Headers</h3>
         <pre class="panel">
@@ -75,10 +85,12 @@
 <% end %>
         </pre>
 
+        <% if api_example.response_body %>
         <h3> Response Body</h3>
         <pre class="panel">
 <%= api_example.prettified_response %>
         </pre>
+        <% end %>
       </div>
     <% end %>
   </div>
