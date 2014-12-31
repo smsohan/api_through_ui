@@ -2,6 +2,34 @@
 
 <% api_examples = @api_action.api_examples %>
 
+
+<div>
+  <h2>Query Parameters</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Parameter name</th>
+        <th>Example values</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @api_action.query_parameters.each do |query_parameter| %>
+        <tr>
+          <td><code><%= query_parameter.name %></code></td>
+          <td>
+            <ul>
+              <% query_parameter.example_values.each do |example_value|%>
+                <li><%= example_value %></li>
+              <% end %>
+            </ul>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+
 <div>
   <dl class="tabs vertical" data-tab>
     <dd class="active"><a href="#panel1">Example 1</a></dd>
