@@ -3,6 +3,7 @@ class ApiExample
 
   field :host, type: String
   field :url, type: String
+  field :fullURL, type: String, as: :full_url
   field :http_method, type: String
   field :version, type: String
   field :resource, type: String
@@ -31,7 +32,7 @@ class ApiExample
     curl_parts << "-X #{http_method}"
     curl_parts << curl_headers_string
     curl_parts << "-d '#{request_body}'" if request_body.present?
-    curl_parts << "'https://api.github.com#{url}'"
+    curl_parts << "'#{full_url}'"
 
     curl_parts.join(" \\\n")
   end
