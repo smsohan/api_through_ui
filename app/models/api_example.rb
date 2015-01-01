@@ -27,7 +27,12 @@ class ApiExample
        )
 
     curl_headers_string = curl_headers.map{|key, value| "-H '#{key}: #{value}'"}.join(" \\\n")
+    curl_parts = ["curl -k -x 'http://spyrest.com:9081'"]
+    curl_parts << "-X #{http_method}"
+    curl_parts << curl_headers_string
+    curl_parts << "-d '#{request_body}'" if request_body.present?
+    curl_parts << "'https://api.github.com#{url}'"
 
-    "curl -k -x 'http://spyrest.com:9081' \\\n#{curl_headers_string} \\\n'https://api.github.com#{url}'"
+    curl_parts.join(" \\\n")
   end
 end
