@@ -26,8 +26,8 @@ class ApiExample
       'x-spy-rest-version' => version
        )
 
-    curl_headers_string = curl_headers.map{|key, value| "-H '#{key}: #{value}'"}.join(' ')
+    curl_headers_string = curl_headers.map{|key, value| "-H '#{key}: #{value}'"}.join(" \\\n")
 
-    "curl -k -x 'http://spyrest.com:9081' #{curl_headers_string} 'https://api.github.com#{url}'"
+    "curl -k -x 'http://spyrest.com:9081' \\\n#{curl_headers_string} \\\n'https://api.github.com#{url}'"
   end
 end
