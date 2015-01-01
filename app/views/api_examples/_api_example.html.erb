@@ -5,13 +5,16 @@
 
       <p><%= api_example.description || 'No description given' %></p>
 
-      <h3>Request URL</h3>
+      <h4>Recorded at</h4>
+      <p><%= api_example.recorded_at.strftime("%Y-%m-%d %H:%M:%S UTC") %></p>
+
+      <h4>Request URL</h4>
       <pre class="panel">
 <%= api_example.http_method %> <%= api_example.url -%>
       </pre>
 
       <% if api_example.query.present? %>
-      <h3>Query Parameters</h3>
+      <h4>Query Parameters</h4>
       <pre class="panel">
 <% api_example.query.each_pair do |key, value| %>
 <%= key %>: <%= value %>
@@ -19,7 +22,7 @@
       </pre>
       <% end %>
 
-      <h3> Request Headers</h3>
+      <h4> Request Headers</h4>
       <pre class="panel">
 <% api_example.request_headers.each_pair do |key, value| %>
 <%= key %>: <%= value %>
@@ -27,13 +30,13 @@
       </pre>
 
       <% if api_example.request_body.present? %>
-      <h3> Request Body</h3>
+      <h4> Request Body</h4>
       <pre class="panel">
 <%= api_example.request_body %>
       </pre>
       <% end %>
 
-      <h3> Response Headers</h3>
+      <h4> Response Headers</h4>
       <pre class="panel">
 <% api_example.response_headers.each_pair do |key, value| %>
 <%= key %>: <%= value %>
@@ -41,7 +44,7 @@
       </pre>
 
       <% if api_example.response_body %>
-      <h3> Response Body</h3>
+      <h4> Response Body</h4>
       <pre class="panel">
 <%= api_example.prettified_response %>
       </pre>
