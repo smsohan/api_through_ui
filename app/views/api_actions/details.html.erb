@@ -42,15 +42,7 @@
     </dd>
     <% 2.upto(api_examples.count) do |index| %>
       <dd>
-        <%=link_to "Example #{index}", "#panel#{index}",
-          data: {example_index: index,
-            load_path: api_example_path(index, api_host: @api_host.name,
-              api_version: @api_version.name,
-              api_resource: @api_resource.name,
-              api_action: @api_action.name),
-
-          }
-        %>
+        <%=link_to "Example #{index}", "#panel#{index}"%>
       </dd>
     <% end %>
   </dl>
