@@ -16,13 +16,17 @@ class ApiExample
   field :strippedResponseBody, type: String, as: :stripped_response_body
   field :recordedAt, type: DateTime, as: :recorded_at
 
-  def to_curl
-    curl_headers = request_headers.merge( 'x-spy-rest-desc' => description,
-      'x-spy-rest-resource' => resource,
-      'x-spy-rest-version' => version
-       )
+  SPYREST_HEADER_PREFIX = 'x-spy-rest-'
 
-    curl_headers_string = curl_headers.map{|key, value| "-H '#{key}: #{value}'"}.join(" \\\n")
+  def request_headers_without_spyrest
+    request_headers.reduce({}) do |hash, (key, value)|
+      hash[key] = value unless key.starts_with?(SPYREST_HEADER_PREFIX)
+      hash
+    end
+  end
+
+  def to_curl
+    curl_headers_string = request_headers_without_spyrest.map{|key, value| "-H '#{key}: #{value}'"}.join(" \\\n")
     curl_parts = ["curl -k -x 'http://spyrest.com:9081'"]
     curl_parts << "-X #{http_method}"
     curl_parts << curl_headers_string
