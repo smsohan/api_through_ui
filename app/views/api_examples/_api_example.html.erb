@@ -51,7 +51,7 @@
       <h4> Response Body</h4>
       <p class="info label"> Shortened for readability </p>
       <pre class="panel">
-<%= JSON.pretty_generate(api_example.stripped_response_body) %>
+<%= JSON.pretty_generate(JSON.parse(api_example.stripped_response_body)) %>
       </pre>
       <% end %>
     </div>
