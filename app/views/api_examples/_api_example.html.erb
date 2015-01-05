@@ -49,8 +49,9 @@
 
       <% if api_example.response_body %>
       <h4> Response Body</h4>
+      <p class="info label"> Shortened for readability </p>
       <pre class="panel">
-<%= api_example.prettified_response %>
+<%= JSON.pretty_generate(api_example.stripped_response_body) %>
       </pre>
       <% end %>
     </div>

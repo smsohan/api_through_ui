@@ -13,13 +13,8 @@ class ApiExample
   field :requestBody, type: String, as: :request_body
   field :responseHeaders, type: Hash, as: :response_headers
   field :responseBody, type: String, as: :response_body
+  field :strippedResponseBody, type: Hash, as: :stripped_response_body
   field :recordedAt, type: DateTime, as: :recorded_at
-
-  def prettified_response
-    JSON.pretty_generate(JSON.parse(response_body))
-  rescue
-    response_body
-  end
 
   def to_curl
     curl_headers = request_headers.merge( 'x-spy-rest-desc' => description,
