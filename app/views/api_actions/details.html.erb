@@ -37,16 +37,13 @@
 <div>
   <h3>Examples</h3>
   <dl id="example-tabs" class="tabs vertical" data-tab>
-    <dd class="active">
-      <a href="#panel1">Example 1</a>
-    </dd>
-    <% 2.upto(api_examples.count) do |index| %>
-      <dd>
-        <%=link_to "Example #{index}", "#panel#{index}"%>
+    <% api_examples.each_with_index do |api_example, index| %>
+      <dd <%= index == 0 && 'class="active"' %> >
+        <%= link_to truncate(api_example.description, length: 30) || "Example #{index + 1}",  "#panel#{index}" %>
       </dd>
     <% end %>
   </dl>
   <div id="example-panels" class="tabs-content vertical">
-    <%= render partial: 'api_examples/api_example', collection: @api_action.api_examples, as: :api_example %>
+    <%= render partial: 'api_examples/api_example', collection: api_examples, as: :api_example %>
   </div>
 </div>

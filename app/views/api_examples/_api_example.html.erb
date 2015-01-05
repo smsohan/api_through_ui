@@ -1,8 +1,6 @@
 <% index = api_example_counter %>
 
-<div class="content <%= index == 0 ? 'active' : '' %>" id="panel<%=index + 1 %>">
-      <h3>Example <%= index + 1 %></h3>
-
+<div class="content <%= index == 0 ? 'active' : '' %>" id="panel<%=index %>">
       <p><%= api_example.description || 'No description given' %></p>
 
       <h4>Recorded at</h4>
