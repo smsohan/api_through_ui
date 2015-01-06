@@ -21,3 +21,9 @@
    margin-right: auto;
    max-width: initial;
 }
+
+.shell{
+  background-color: #333;
+  font-size: 1.2em;
+  color: #ddd;
+}
