@@ -6,7 +6,7 @@
       <h4>Recorded at</h4>
       <p><%= api_example.recorded_at.strftime("%Y-%m-%d %H:%M:%S UTC") %></p>
 
-      <h4><%= link_to 'Show cURL', curl_api_example_path(api_example.id), id: "show-curl-#{api_example.id}", remote: true%></h4>
+      <h4><%= link_to 'Try with cURL', curl_api_example_path(api_example.id), id: "show-curl-#{api_example.id}", remote: true%></h4>
       <div id="curl-<%=api_example.id%>">
       </div>
 
