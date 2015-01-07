@@ -4,7 +4,7 @@
 
 
 <h3 class="subheader">Description</h3>
-<p id="description"><%= @api_action.description.description %></p>
+<p id="description"><%= @api_action.description.try(:description) %></p>
 
 
 <%= link_to '', id: 'edit-description-link' do %>
@@ -27,7 +27,8 @@
         </h3>
 
         <label>
-          <%= form.text_area :description, placeholder: "Describe this action using markdown...", rows: 10 %>
+          Describe this action in markdown
+          <%= form.text_area :description, placeholder: "Describe this action in markdown...", rows: 10 %>
         </label>
       </div>
       <div class="small-12 large-6 columns">
