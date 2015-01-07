@@ -1,5 +1,7 @@
 <h2>Available Versions</h2>
 
+<p>Select a version from the following list</p>
+
 <ol>
   <% @api_versions.each do |api_version| %>
     <li><%= link_to api_version.name, api_resources_path(api_host: @api_host.name, api_version: api_version.name) -%></li>
