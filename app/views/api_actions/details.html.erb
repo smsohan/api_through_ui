@@ -5,11 +5,11 @@
 <% if @api_action.query_parameters.present? %>
 
   <div>
-    <h3>Query Parameters</h3>
-    <table class="small-12">
+    <h3 class="subheader">Query Parameters</h3>
+    <table class="small-12 large-6">
       <thead>
         <tr>
-          <th>Parameter name</th>
+          <th>Name</th>
           <th>Type</th>
           <th>Example values</th>
         </tr>
@@ -35,7 +35,7 @@
 
 
 <div>
-  <h3>Examples</h3>
+  <h3 class="subheader">Examples</h3>
   <dl id="example-tabs" class="tabs vertical" data-tab>
     <% api_examples.each_with_index do |api_example, index| %>
       <dd class="<%= index == 0 && 'active'%>" >
