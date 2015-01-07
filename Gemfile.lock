@@ -143,6 +143,9 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (~> 1.1)
+    showdown-rails (0.0.4)
+      actionpack (>= 3.1)
+      railties (>= 3.1)
     spring (1.2.0)
     sprockets (2.12.3)
       hike (~> 1.2)
@@ -194,6 +197,7 @@ DEPENDENCIES
   mongoid
   rails (= 4.2.0)
   sass-rails (~> 5.0)
+  showdown-rails
   spring
   therubyracer
   turbolinks

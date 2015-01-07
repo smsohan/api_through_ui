@@ -12,6 +12,7 @@ gem 'unicorn'
 gem 'mongoid'
 gem 'foundation-rails'
 gem 'breadcrumbs_on_rails'
+gem 'showdown-rails'
 
 group :development, :test do
   gem 'debugger'

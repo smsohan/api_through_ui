@@ -2,8 +2,57 @@
 
 <% api_examples = @api_action.api_examples %>
 
-<% if @api_action.query_parameters.present? %>
 
+<h3 class="subheader">Description</h3>
+<p id="description"><%= @api_action.description.description %></p>
+
+
+<%= link_to '', id: 'edit-description-link' do %>
+  <i class="fa fa-edit"></i> Edit Description
+<% end %>
+
+<div id="action-description-form-container" class="hide">
+
+  <%= form_for @api_action.description || ApiActionDescription.new_for_resource(@api_action), remote: true do |form| %>
+
+    <%= form.hidden_field :api_host %>
+    <%= form.hidden_field :api_version %>
+    <%= form.hidden_field :api_resource %>
+    <%= form.hidden_field :api_action %>
+
+    <div class="row">
+      <div class="small-12 large-6 columns">
+        <h3 class="subheader">
+          Edit
+        </h3>
+
+        <label>
+          <%= form.text_area :description, placeholder: "Describe this action using markdown...", rows: 10 %>
+        </label>
+      </div>
+      <div class="small-12 large-6 columns">
+        <h3 class="subheader">
+          Preview
+        </h3>
+        <p id="preview">
+          <%= form.object.description %>
+        </p>
+      </p>
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="small-12 large-6 columns">
+        <%= form.submit 'Update description', class:"button", data: {disable_with: 'Updating...'} %>
+      </div>
+    </div>
+  <% end %>
+
+</div>
+
+
+<% if @api_action.query_parameters.present? %>
   <div>
     <h3 class="subheader">Query Parameters</h3>
     <table class="small-12 large-6">
@@ -47,3 +96,14 @@
     <%= render partial: 'api_examples/api_example', collection: api_examples, as: :api_example %>
   </div>
 </div>
+
+<script>
+$(function(){
+  new ApiActionDescriptionView({
+    showHideLink: $('#edit-description-link'),
+    formContainer: $('#action-description-form-container'),
+    desciptionContainer: $('#description'),
+    previewContainer: $('#preview')
+  });
+});
+</script>

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'api_action_descriptions/create'
+
   get 'pages/how_it_works', as: :how_it_works
   get 'pages/about', as: :about
 
@@ -10,6 +12,8 @@ Rails.application.routes.draw do
   get 'api_examples/curl/:id' => 'api_examples#curl', as: :curl_api_example
 
   get 'api_actions/details', as: :details_api_action
+
+  resources :api_action_descriptions, only: [:create, :update]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

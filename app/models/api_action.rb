@@ -22,4 +22,11 @@ class ApiAction
     end
   end
 
+  def description
+    ApiActionDescription.where(api_host: api_host.name,
+      api_version: api_version.name,
+      api_resource: api_resource.name,
+      api_action: name).first
+  end
+
 end
