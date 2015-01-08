@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   get 'api_actions/details', as: :details_api_action
 
-  resources :api_action_descriptions, only: [:create, :update] do
+  resources :api_action_descriptions, only: [:create, :update, :destroy] do
     collection do
       post :preview
     end

@@ -18,6 +18,15 @@ class ApiActionDescriptionsController < ApplicationController
     @description = params[:description]
   end
 
+  def destroy
+    api_action_description = ApiActionDescription.find(params[:id])
+    api_action_description.destroy
+    redirect_to details_api_action_path(api_host: api_action_description.api_host,
+      api_version: api_action_description.api_version,
+      api_resource: api_action_description.api_resource,
+      api_action: api_action_description.api_action)
+  end
+
   private
   def descriptions_params
     params.require(:api_action_description).permit( :api_host, :api_version, :api_resource, :api_action, :description)
