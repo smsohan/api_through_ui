@@ -2,12 +2,12 @@ require 'test_helper'
 
 class ApiActionDescriptionsControllerTest < ActionController::TestCase
   test "create" do
-    post :create, api_action_description: {api_host: 'api.x.com',
+    xhr :post, :create, api_action_description: {api_host: 'api.x.com',
       api_version: 'v1', api_resource: 'R',
       api_action: 'GET /some',
       description: 'Does something' }
     assert_response :success
-    assert_equal 'Does something', JSON.parse(response.body)['description']
+    assert_match /Does something/, response.body
   end
 
   test "validates on create" do
@@ -26,12 +26,12 @@ class ApiActionDescriptionsControllerTest < ActionController::TestCase
       description: 'Does something'
       )
 
-    put :update, id: api_action_description.id, api_action_description: {
+    xhr :put, :update, id: api_action_description.id, api_action_description: {
       description: 'Does something new'
     }
 
     assert_response :success
-    assert_equal 'Does something new', JSON.parse(response.body)['description']
+    assert_match /Does something new/, response.body
 
   end
 
