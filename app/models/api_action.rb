@@ -23,10 +23,33 @@ class ApiAction
   end
 
   def description
-    ApiActionDescription.where(api_host: api_host.name,
+    options = {api_host: api_host.name,
       api_version: api_version.name,
       api_resource: api_resource.name,
-      api_action: name).first
+      api_action: name}
+
+    ApiActionDescription.where(options).first ||
+    ApiActionDescription.new(options.merge(description: default_description))
+  end
+
+  def default_description
+    parameters = query_parameters
+
+    if parameters.any?
+      description = ["### Query Parameters"]
+
+      description << "|Name|Type|Example Values|Description|"
+      description << "|----|----|----|----|"
+
+      description += query_parameters.map do |query_parameter|
+        examples = query_parameter.example_values.join(", ")
+        '|' + ["`#{query_parameter.name}`", query_parameter.type_name, examples, ''].join('|') + '|'
+      end
+
+      description.join("\n")
+    else
+      'No description given'
+    end
   end
 
 end

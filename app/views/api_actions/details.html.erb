@@ -3,15 +3,16 @@
 <% api_examples = @api_action.api_examples %>
 
 
-<h3 class="subheader">Description</h3>
-<div id="description">
+<h3 class="subheader">Description
+<%= link_to '', id: 'edit-description-link' do %>
+  <i class="fa fa-edit"></i>
+<% end %>
+</h3>
+<div id="description" class="small-12 large-6">
   <%=raw markdown @api_action.description.try(:description) %>
 </div>
 
 
-<%= link_to '', id: 'edit-description-link' do %>
-  <i class="fa fa-edit"></i> Edit Description
-<% end %>
 
 <div id="action-description-form-container" class="hide">
 
@@ -50,38 +51,6 @@
   </div>
 
 </div>
-
-
-<% if @api_action.query_parameters.present? %>
-  <div>
-    <h3 class="subheader">Query Parameters</h3>
-    <table class="small-12 large-6">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Type</th>
-          <th>Example values</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @api_action.query_parameters.each do |query_parameter| %>
-          <tr>
-            <td><code><%= query_parameter.name %></code></td>
-            <td><%= query_parameter.type_name %></td>
-            <td>
-              <ul>
-                <% query_parameter.example_values.each do |example_value|%>
-                  <li><%= example_value %></li>
-                <% end %>
-              </ul>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
-<% end %>
-
 
 <div>
   <h3 class="subheader">Examples</h3>
