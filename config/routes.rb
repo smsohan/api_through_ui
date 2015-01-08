@@ -13,7 +13,11 @@ Rails.application.routes.draw do
 
   get 'api_actions/details', as: :details_api_action
 
-  resources :api_action_descriptions, only: [:create, :update]
+  resources :api_action_descriptions, only: [:create, :update] do
+    collection do
+      post :preview
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

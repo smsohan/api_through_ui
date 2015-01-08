@@ -10,4 +10,5 @@ class ApiActionsController < ApplicationController
     add_breadcrumb @api_resource.name, api_resources_path(api_host: @api_host.name, api_version: @api_version.name, api_resource: @api_resource.name)
     add_breadcrumb @api_action.name
   end
+
 end
