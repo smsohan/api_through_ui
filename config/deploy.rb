@@ -32,7 +32,11 @@ namespace :deploy do
           if current_gemfile_lock == last_gemfile_lock
             puts "Copying the old Gemfile* since the contents are same"
             execute :cp, "#{last_release_dir}/Gemfile*", "."
+          else
+            puts "Skipping the Gemfile.lock copy since the shas are different"
           end
+        else
+          puts "Last release Gemfile.lock is not found"
         end
 
         secret_key_base = capture('cat', 'secrets/SECRET_KEY_BASE').strip
