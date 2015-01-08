@@ -17,6 +17,7 @@ class ApiActionDescriptionView
     options.showHideLink.on 'click', =>
       options.formContainer.show()
       options.showHideLink.hide()
+      options.descriptionContainer.hide()
       false
 
     form = $('form', options.formContainer)
@@ -24,6 +25,7 @@ class ApiActionDescriptionView
     form.on "ajax:success", (xhr, data)=>
       options.formContainer.hide()
       options.showHideLink.show()
+      options.descriptionContainer.show()
 
     form.on "ajax:error", (xhr, data)->
       alert("Failed to save the description. Try again.")
