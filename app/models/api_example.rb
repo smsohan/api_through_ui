@@ -38,7 +38,8 @@ class ApiExample
 
   def response_fields_summary_to_markdown
     response_fields_summary.map do |response_field|
-      "|`#{response_field[0]}`|#{response_field[1]}||"
+      key = response_field[0].present? ? `#{response_field[0]}` : ''
+      "|#{key}|#{response_field[1]}||"
     end
   end
 
