@@ -21,17 +21,17 @@ namespace :deploy do
         last_release = capture('ls', '-al | tail -2 | head -1')
         if last_release
           last_release_dir = last_release.strip.split.last
-          last_gemfile_lock = capture('sha256sum', last_release_dir + '/Gemfile.lock')
+          last_gemfile_lock = capture('sha256sum', last_release_dir + '/Gemfile.lock').strip.split.first
         end
       end
 
       within current_path do
 
         if last_gemfile_lock
-          current_gemfile_lock = capture('sha256sum', 'Gemfile.lock')
+          current_gemfile_lock = capture('sha256sum', 'Gemfile.lock').strip.split.first
           if current_gemfile_lock == last_gemfile_lock
             puts "Copying the old Gemfile* since the contents are same"
-            execute :cp, "#{last_release_dir}/Gemfile*", "."
+            execute :cp, "--preserve=timestamps #{releases_path}/#{last_release_dir}/Gemfile*", "."
           else
             puts "Skipping the Gemfile.lock copy since the shas are different"
           end
