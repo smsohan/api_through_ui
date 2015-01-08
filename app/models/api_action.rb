@@ -33,23 +33,19 @@ class ApiAction
   end
 
   def default_description
-    parameters = query_parameters
+    description = []
 
+    parameters = query_parameters
     if parameters.any?
-      description = ["### Query Parameters"]
+      description << "### Query Parameters"
+      description << ""
 
       description << "|Name|Type|Example Values|Description|"
       description << "|----|----|----|----|"
-
-      description += query_parameters.map do |query_parameter|
-        examples = query_parameter.example_values.join(", ")
-        '|' + ["`#{query_parameter.name}`", query_parameter.type_name, examples, ''].join('|') + '|'
-      end
-
-      description.join("\n")
-    else
-      'No description given'
+      description += query_parameters.map(&:to_markdown)
     end
+
+    description.present? ? description.join("\n") : 'No description given'
   end
 
 end

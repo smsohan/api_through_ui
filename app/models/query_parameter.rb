@@ -17,6 +17,11 @@ class QueryParameter
     return 'String'
   end
 
+  def to_markdown
+    examples = example_values.join(", ")
+    '|' + ["`#{name}`", type_name, examples, ''].join('|') + '|'
+  end
+
   private
 
   def integer?(value)
