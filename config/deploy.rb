@@ -12,9 +12,30 @@ namespace :deploy do
   task :build_and_run do
     on roles(:app) do
 
-      within current_path do
-        secret_key_base = capture('cat', 'secrets/SECRET_KEY_BASE').strip
+      last_gemfile_lock = nil
+      last_release_dir = nil
 
+      puts "release_path = #{releases_path}"
+
+      within releases_path do
+        last_release = capture('ls', '-al | tail -2 | head -1')
+        if last_release
+          last_release_dir = last_release.strip.split.last
+          last_gemfile_lock = capture('sha256sum', last_release_dir + '/Gemfile.lock')
+        end
+      end
+
+      within current_path do
+
+        if last_gemfile_lock
+          current_gemfile_lock = capture('sha256sum', 'Gemfile.lock')
+          if current_gemfile_lock == last_gemfile_lock
+            puts "Copying the old Gemfile* since the contents are same"
+            execute :cp, "#{last_release_dir}/Gemfile*", "."
+          end
+        end
+
+        secret_key_base = capture('cat', 'secrets/SECRET_KEY_BASE').strip
         with SECRET_KEY_BASE: secret_key_base do
           execute :build_and_run
         end
