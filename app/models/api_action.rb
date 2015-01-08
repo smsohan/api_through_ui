@@ -45,6 +45,17 @@ class ApiAction
       description += query_parameters.map(&:to_markdown)
     end
 
+    response_fields = api_examples.limit(1).first.response_fields_summary_to_markdown
+    if response_fields.any?
+      description << "### Response Fields"
+      description << ""
+
+      description << "|Name|Type|Description|"
+      description << "|----|----|----|"
+      description += response_fields
+    end
+
+
     description.present? ? description.join("\n") : 'No description given'
   end
 
