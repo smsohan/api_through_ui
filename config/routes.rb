@@ -4,7 +4,11 @@ Rails.application.routes.draw do
   get 'pages/how_it_works', as: :how_it_works
   get 'pages/about', as: :about
 
-  resources :api_hosts, only: [:index]
+  resources :api_hosts, only: [:index] do
+    collection do
+      post :echo
+    end
+  end
   resources :api_versions, only: [:index, :show]
 
   resources :api_resources, only: [:index, :show]
