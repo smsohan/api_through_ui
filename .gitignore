@@ -13,3 +13,4 @@ secrets
 !/log/.keep
 /tmp
 .capistrano
+vendor/bundle
