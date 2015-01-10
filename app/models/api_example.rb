@@ -38,50 +38,7 @@ class ApiExample
   end
 
   def response_fields_summary_to_markdown
-    response_fields_summary.map do |response_field|
-      key = response_field[0].present? ? "`#{response_field[0]}`" : ''
-      "|#{key}|#{response_field[1]}||"
-    end
-  end
-
-  def response_fields_summary
-    response_fields('', JSON.parse(stripped_response_body))
-  end
-
-  def response_fields(key, value)
-    if !value.is_a?(Hash) && !value.is_a?(Array)
-      value_class = case
-      when value.is_a?(TrueClass)
-        'Boolean'
-      when value.is_a?(FalseClass)
-        'Boolean'
-      when value.is_a?(Integer)
-        'Integer'
-      else
-        value.class.to_s
-      end
-
-      return [[key, value_class]]
-    end
-
-    if value.is_a?(Hash)
-      result = []
-      value.each do |item_key, item_value|
-        flattened_key = key.present? ? "#{key}.#{item_key}" : "#{item_key}"
-        result += response_fields(flattened_key, item_value)
-      end
-      return result
-    end
-
-    if value.is_a?(Array)
-      base = [[key, Array.to_s]]
-      value.first.try(:tap) do |item|
-        base += response_fields("#{key}[]", item)
-      end
-
-      return base
-    end
-
+    Markdownizer.to_md(JSON.parse(stripped_response_body))
   end
 
 end

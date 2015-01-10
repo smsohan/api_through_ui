@@ -46,12 +46,10 @@ class ApiAction
     end
 
     response_fields = api_examples.limit(1).first.response_fields_summary_to_markdown
-    if response_fields.any?
+    if response_fields.present?
       description << "### Response Fields"
       description << ""
 
-      description << "|Name|Type|Description|"
-      description << "|----|----|----|"
       description += response_fields
     end
 
