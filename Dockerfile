@@ -2,7 +2,10 @@ FROM ruby:2.2.0
 
 MAINTAINER SM Sohan
 
-RUN apt-get install software-properties-common
+sudo apt-get update
+sudo apt-get install software-properties-common
+sudo apt-get install python-software-properties
+
 RUN add-apt-repository -y ppa:nginx/stable
 RUN apt-get update
 RUN apt-get install -qq -y nginx
