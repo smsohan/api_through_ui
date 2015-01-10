@@ -11,6 +11,10 @@
       </div>
 
       <h4 class="subheader">Request URL</h4>
+      <% if api_example.requires_auth %>
+        <strong class="label">Requires Authorization</strong>
+      <% end %>
+
       <pre class="panel">
 <%= api_example.http_method %> <%= api_example.url -%>
       </pre>
