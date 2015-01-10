@@ -1,4 +1,4 @@
-FROM dockerfile/ruby
+FROM ruby:2.2.0
 
 MAINTAINER SM Sohan
 
