@@ -6,13 +6,13 @@ Status](https://travis-ci.org/smsohan/api_through_ui.svg?branch=master)](https:/
 
 ## Why Do you Need it?
 
-Did you ever document a REST API? If you did, chances are, the process was like the following:
+My friends, did you ever __document__ a REST API? If you did, chances are, the process was like the following:
 
 * `cURL an API Endpoint` -> `Repeat until it works`
 * `Copy the URL, headers, request and response body` -> `Paste somewhere` -> `Remove duplicates` -> `Write description`
 * `Repeat for each API Endpoint`
 
-Well, I find this to be laborious and error prone. Instead, what if it was as follows:
+Well, I find this to be laborious and error prone. Friends, instead of this, what if it was as follows:
 
 * Write a test to describe your API
 
@@ -30,7 +30,7 @@ Well, I find this to be laborious and error prone. Instead, what if it was as fo
 
 * And it'd generate a full documentation as seen [here](http://spyrest.com/api_actions/details?api_action=GET+%2Fusers%2Fsmsohan%2Fgists&api_host=api.github.com&api_resource=gists&api_version=v3)
 
-  Automated, with cURL example, based on live API data! Are you sold yet?
+  Automated, with cURL example, based on live API data! My friend, are you sold yet?
 
 
 ## How it works
