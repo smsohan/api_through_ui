@@ -9,6 +9,15 @@ SSHKit.config.command_map[:build_and_run] = "#{current_path}/build_and_run.sh"
 
 namespace :deploy do
 
+  task :restart_all do
+    on roles(:app) do
+      execute :service, 'docker restart'
+      execute :docker, 'start mongodb'
+      execute :docker, 'start api_through'
+      execute :docker, 'start api_through_ui'
+    end
+  end
+
   task :build_and_run do
     on roles(:app) do
 
