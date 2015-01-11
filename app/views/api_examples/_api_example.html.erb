@@ -49,11 +49,11 @@
 <% end %>
       </pre>
 
-      <% if api_example.response_body %>
+      <% if api_example.response_body.present? %>
       <h4 class="subheader"> Response Body</h4>
       <p class="info label"> Shortened for readability </p>
       <pre class="panel">
-<%= JSON.pretty_generate(JSON.parse(api_example.stripped_response_body)) %>
+<%= api_example.prettified_response %>
       </pre>
       <% end %>
     </div>
