@@ -45,7 +45,7 @@ class ApiAction
       description += query_parameters.map(&:to_markdown)
     end
 
-    response_fields = api_examples.limit(1).first.response_fields_summary_to_markdown
+    response_fields = api_examples.sort_by{|ex| -ex.stripped_response_body.length}.first.response_fields_summary_to_markdown
     if response_fields.present?
       description << "### Response Fields"
       description << ""
