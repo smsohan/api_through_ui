@@ -28,7 +28,7 @@ class ApiExample
 
   def to_curl
     curl_headers_string = request_headers_without_spyrest.map{|key, value| "-H '#{key}: #{value}'"}.join(" \\\n")
-    curl_parts = ["curl -k -x 'http://spyrest.com:9081'"]
+    curl_parts = ["curl -k"]
     curl_parts << "-X #{http_method}"
     curl_parts << curl_headers_string
     curl_parts << "-d '#{request_body}'" if request_body.present?
