@@ -8,53 +8,52 @@
   <i class="fa fa-edit"></i>
 <% end %>
 </h3>
-<div id="description" class="small-12 large-6">
-  <%=raw markdown @api_action.description.try(:description) %>
+
+<div class="row subheader">
+  <div id="description" class="columns small-12 large-6 large-offset-2">
+    <%=raw markdown @api_action.description.try(:description) %>
+  </div>
 </div>
 
+<div class="row">
+  <div id="action-description-form-container" class="columns small-12 large-6 large-offset-2 hide">
 
+    <dl class="tabs" data-tab>
+      <dd class="active"><a href="#edit-description">Write</a></dd>
+      <dd><%= link_to 'Preview', "#preview", data: {path: preview_api_action_descriptions_path}, method: :post, remote: true, id: 'preview-button' %></dd>
+    </dl>
 
-<div id="action-description-form-container" class="hide">
+    <%= form_for @api_action.description || ApiActionDescription.new_for_resource(@api_action), remote: true do |form| %>
 
-  <dl class="tabs" data-tab>
-    <dd class="active"><a href="#edit-description">Write</a></dd>
-    <dd><%= link_to 'Preview', "#preview", data: {path: preview_api_action_descriptions_path}, method: :post, remote: true, id: 'preview-button' %></dd>
-  </dl>
+      <%= form.hidden_field :api_host %>
+      <%= form.hidden_field :api_version %>
+      <%= form.hidden_field :api_resource %>
+      <%= form.hidden_field :api_action %>
 
-  <%= form_for @api_action.description || ApiActionDescription.new_for_resource(@api_action), remote: true do |form| %>
+      <div class="tabs-content">
+        <div class="content active" id="edit-description">
+          <label>
+            Describe this action in markdown
+            <%= form.text_area :description, placeholder: "Describe this action in markdown...", rows: 25 %>
+          </label>
+        </div>
 
-    <%= form.hidden_field :api_host %>
-    <%= form.hidden_field :api_version %>
-    <%= form.hidden_field :api_resource %>
-    <%= form.hidden_field :api_action %>
+        <div class="content" id="preview">
 
-    <div class="tabs-content">
-      <div class="content active" id="edit-description">
-        <div class="row">
-          <div class="small-12 large-6 columns">
-            <label>
-              Describe this action in markdown
-              <%= form.text_area :description, placeholder: "Describe this action in markdown...", rows: 25 %>
-            </label>
-          </div>
         </div>
       </div>
 
-      <div class="content" id="preview">
-
+      <div class="row">
+        <div class="small-12 large-6 columns">
+          <%= form.submit 'Update', class:"button", data: {disable_with: 'Updating...'} %>
+          <% if @api_action.description.persisted? %>
+            <%= link_to 'Auto Generate', api_action_description_path(@api_action.description), data: {method: :delete, confirm: 'Are you sure?'} %>
+          <% end %>
+        </div>
       </div>
-    </div>
+    <% end %>
 
-    <div class="row">
-      <div class="small-12 large-6 columns">
-        <%= form.submit 'Update', class:"button", data: {disable_with: 'Updating...'} %>
-        <% if @api_action.description.persisted? %>
-          <%= link_to 'Auto Generate', api_action_description_path(@api_action.description), data: {method: :delete, confirm: 'Are you sure?'} %>
-        <% end %>
-      </div>
-    </div>
-  <% end %>
-
+  </div>
 </div>
 
 <div>
