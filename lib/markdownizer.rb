@@ -18,6 +18,8 @@ class Markdownizer
       'Boolean'
     when value.is_a?(Integer)
       'Integer'
+    when value.is_a?(NilClass)
+      ''
     when value.is_a?(Array)
       Array.to_s
     else
