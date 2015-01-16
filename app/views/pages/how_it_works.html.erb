@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="small-12 large-6 large-centered columns">
+  <div class="small-12 large-7 large-centered columns">
     <h2>How it Works</h2>
 
     <div style="font-size: 2em; letter-spacing: 4px; color: #43AC6A;">
@@ -17,11 +17,11 @@
       SpyREST automatically generates REST API documentation based on real API calls. As the name suggests, SpyREST works as a software in the middle between a API client and the API to capture the web traffic. It then adds the necessary sugar and butter to bake the API documentation with enhanced information. You can run the following command to see it in practice:
     </p>
 
-    <pre>
-curl -k -x http://spyrest.com:9081 --headers "Accept: application/vnd.github.v3+json"
---header "x-spy-rest-desc: Searches assembly language repositories for the word tetris"
-"https://api.github.com/search/repositories?q=tetris+language:assembly&sort=stars&order=desc"
-    </pre>
+    <pre class="panel" contenteditable>
+curl -k -x "http://spyrest.com:9081" \
+-H "Accept: application/vnd.github.v3+json" \
+-H "x-spy-rest-desc: Searches assembly language repositories for the word tetris" \
+"https://api.github.com/search/repositories?q=tetris+language:assembly&sort=stars&order=desc"</pre>
 
     <p>And see the generated documentation <%= link_to 'here', details_api_action_path(api_host: 'api.github.com',
       api_version: 'v3',
