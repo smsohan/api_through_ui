@@ -21,7 +21,7 @@ class ApiExample
 
   def request_headers_without_spyrest
     request_headers.reduce({}) do |hash, (key, value)|
-      hash[key] = value unless key.starts_with?(SPYREST_HEADER_PREFIX)
+      hash[key] = value unless key.starts_with?(SPYREST_HEADER_PREFIX) || %w{host connection}.include?(key)
       hash
     end
   end
