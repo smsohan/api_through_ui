@@ -7,11 +7,11 @@
   <li>
     <%= link_to api_resource.name, api_resource_path(api_resource.name, api_host: api_resource.api_host.name, api_version: api_resource.api_version.name) %>
 
-    <ol class="no-bullet">
+    <ul class="no-bullet">
       <% api_resource.api_actions.each do |api_action| %>
         <li><%= link_to api_action.name, details_api_action_path(api_resource: api_resource.name, api_host: api_resource.api_host.name, api_version: api_resource.api_version.name, api_action: api_action.name) %></li>
       <% end %>
-    </ol>
+    </ul>
   </li>
 <% end %>
 </ol>
