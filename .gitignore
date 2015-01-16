@@ -14,3 +14,4 @@ secrets
 /tmp
 .capistrano
 vendor/bundle
+public/assets
