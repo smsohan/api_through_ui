@@ -24,6 +24,8 @@ ADD . /api_through_ui
 
 ENV RAILS_ENV production
 ENV PRODUCTION_HOST spyrest.com
+ENV DEVICE_SECRET $DEVICE_SECRET
+
 RUN bundle exec rake assets:precompile
 
 ADD config/nginx-sites.conf /etc/nginx/sites-enabled/default
