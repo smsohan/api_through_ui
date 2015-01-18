@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   get 'api_action_descriptions/create'
 
   get 'pages/how_it_works', as: :how_it_works

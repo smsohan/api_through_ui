@@ -5,5 +5,4 @@ class PagesControllerTest < ActionController::TestCase
     get :how_it_works
     assert_response :success
   end
-
 end

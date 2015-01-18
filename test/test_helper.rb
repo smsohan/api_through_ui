@@ -5,6 +5,7 @@ require 'rails/test_help'
 DatabaseCleaner.strategy = :truncation
 
 class ActiveSupport::TestCase
+
   setup do
     DatabaseCleaner.start
   end
@@ -12,4 +13,8 @@ class ActiveSupport::TestCase
   teardown do
     DatabaseCleaner.clean
   end
+end
+
+class ActionController::TestCase
+  include Devise::TestHelpers
 end
