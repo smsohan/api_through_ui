@@ -30,5 +30,6 @@ module ApiThroughUi
     # config.i18n.default_locale = :de
 
     config.autoload_paths << Rails.root.join('lib')
+    config.assets.initialize_on_precompile = false
   end
 end
