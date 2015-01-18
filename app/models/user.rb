@@ -33,4 +33,12 @@ class User
   # field :failed_attempts, type: Integer, default: 0 # Only if lock strategy is :failed_attempts
   # field :unlock_token,    type: String # Only if unlock strategy is :email or :both
   # field :locked_at,       type: Time
+
+  field :api_token, type: String
+  index({ api_token: 1 }, { unique: true })
+  before_create :generate_api_token
+
+  def generate_api_token
+    self.api_token = SecureRandom.base64(10)
+  end
 end
