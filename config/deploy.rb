@@ -49,7 +49,7 @@ namespace :deploy do
         end
 
         secret_key_base = capture('cat', 'secrets/SECRET_KEY_BASE').strip
-        with SECRET_KEY_BASE: secret_key_base do
+        with SECRET_KEY_BASE: secret_key_base, PRODUCTION_HOST: fetch(:host) do
           execute :build_and_run
         end
       end

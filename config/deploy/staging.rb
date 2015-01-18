@@ -1,1 +1,3 @@
-role :app, %w{root@api_through.smsohan.com}
+role :app, %w{root@spyrest.com}
+
+set :host, 'spyrest.com'
