@@ -13,6 +13,7 @@ gem 'mongoid'
 gem 'foundation-rails'
 gem 'breadcrumbs_on_rails'
 gem 'github-markdown'
+gem 'devise'
 
 group :development, :test do
   gem 'byebug'
