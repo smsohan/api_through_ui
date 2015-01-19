@@ -23,10 +23,7 @@ curl -k -x "http://spyrest.com:9081" \
 -H "x-spy-rest-desc: Searches assembly language repositories for the word tetris" \
 "https://api.github.com/search/repositories?q=tetris+language:assembly&sort=stars&order=desc"</pre>
 
-    <p>And see the generated documentation <%= link_to 'here', details_api_action_path(api_host: 'api.github.com',
-      api_version: 'v3',
-      api_resource: 'repositories',
-      api_action: 'GET /search/repositories') %></p>
+    <p>And see the generated documentation <%= link_to 'here', api_versions_path(api_host: 'api.github.com') %></p>
 
       <p>Under the hood this is what happens:</p>
 
