@@ -23,5 +23,4 @@ $(function(){
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-58633313-1', 'auto');
-  ga('send', 'pageview');
 });
