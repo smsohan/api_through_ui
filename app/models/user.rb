@@ -48,4 +48,10 @@ class User
   def generate_api_token
     self.api_token = SecureRandom.base64(10)
   end
+
+  def api_hosts
+    self.api_examples.distinct(:host).map do |host|
+      ApiHost.new(name: host)
+    end.sort_by!(&:name)
+  end
 end
