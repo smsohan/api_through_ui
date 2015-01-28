@@ -3,7 +3,7 @@ class User
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+    :recoverable, :rememberable, :trackable, :validatable
 
   field :username,           type: String, default: ""
   ## Database authenticatable
@@ -37,10 +37,13 @@ class User
 
   field :api_token, type: String
   index({ api_token: 1 }, { unique: true })
+  index({ username: 1 }, { unique: true })
   before_create :generate_api_token
 
   validates_presence_of :username
   validates_uniqueness_of :username
+
+  has_many :api_examples
 
   def generate_api_token
     self.api_token = SecureRandom.base64(10)
