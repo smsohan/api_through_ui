@@ -5,6 +5,7 @@ class User
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  field :username,           type: String, default: ""
   ## Database authenticatable
   field :email,              type: String, default: ""
   field :encrypted_password, type: String, default: ""
@@ -37,6 +38,9 @@ class User
   field :api_token, type: String
   index({ api_token: 1 }, { unique: true })
   before_create :generate_api_token
+
+  validates_presence_of :username
+  validates_uniqueness_of :username
 
   def generate_api_token
     self.api_token = SecureRandom.base64(10)
