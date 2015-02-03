@@ -1,0 +1,9 @@
+<h2>Browse Web API Docs from <%= @user.username %></h2>
+
+<p>Select an API from the following list</p>
+
+<ol>
+  <% @api_hosts.each do |api_host| %>
+    <li><%= link_to api_host.name, api_versions_path(api_host: api_host.name) %> </li>
+  <% end %>
+</ol>

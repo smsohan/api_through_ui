@@ -16,6 +16,9 @@ class ApiExample
   field :strippedResponseBody, type: String, as: :stripped_response_body
   field :recordedAt, type: DateTime, as: :recorded_at
   field :requiresAuth, type: Boolean, as: :requires_auth, default: false
+  field :userId, type: String, as: :user_id
+
+  belongs_to :user
 
   SPYREST_HEADER_PREFIX = 'x-spy-rest-'
 
