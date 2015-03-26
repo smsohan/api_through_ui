@@ -13,9 +13,8 @@
  *= require foundation
  *= require_tree .
  *= require_self
+ *= require foundation_and_overrides
  */
-
-$list-side-margin-no-bullet: 20px;
 
 @import "foundation/components/type";
 

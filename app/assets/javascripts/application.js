@@ -24,3 +24,4 @@ $(function(){
 
   ga('create', 'UA-58633313-1', 'auto');
 });
+$(function(){ $(document).foundation(); });
