@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'home/index'
+
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }
@@ -25,5 +27,5 @@ Rails.application.routes.draw do
     end
   end
 
-  root 'api_hosts#index'
+  root 'home#index'
 end
