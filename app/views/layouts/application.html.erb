@@ -15,9 +15,8 @@
   <nav class="top-bar show-for-small-only" data-topbar role="navigation">
     <ul class="title-area">
       <li class="name">
-        <%= link_to root_path, title: 'SpyREST' do %>
-          <%= image_tag 'logo.png' %>
-        <% end %>
+        <h1>SpyREST</h1>
+        <p class="muted-text">Supported by <%=link_to 'Mashape', 'https://www.mashape.com/' %></p>
       </li>
       <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
     </ul>
@@ -29,9 +28,8 @@
 
   <header class="row full-width top-nav-container hide-for-small-only">
     <div class="medium-2 columns">
-      <%= link_to root_path, title: 'SpyREST' do %>
-      <%= image_tag 'logo.png' %>
-      <% end %>
+      <h1>SpyREST</h1>
+      <p class="muted-text">Supported by <%=link_to 'Mashape', 'https://www.mashape.com/' %></p>
     </div>
     <div class="medium-4 columns"></div>
     <div class="medium-6 columns">
@@ -64,7 +62,9 @@
   </div>
 
   <footer class="text-center spaced">
-    <%= image_tag 'footer.png', class: 'footer-image' %>
+    <%= link_to 'https://www.mashape.com/' do %>
+      <%= image_tag 'footer.png', class: 'footer-image' %>
+    <% end %>
   </footer>
 
 
