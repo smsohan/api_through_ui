@@ -1,0 +1,59 @@
+<div class="spaced-sections">
+
+  <section class="row full-width text-center banner-container spaced">
+    <div class="columns medium-2">&nbsp;</div>
+    <div class="columns medium-8">
+      <h1>Your Painkiller for REST API Documentation</h1>
+
+      <p class="muted-text">
+        SpyREST generates automated, customizable, version aware, and scenario based documentation for your REST API from real API calls
+      </p>
+
+
+      <%= image_tag 'banner.png', class: 'banner' %>
+
+    </div>
+    <div class="columns medium-2">&nbsp;</div>
+  </section>
+
+  <section class="row full-width text-center how-this-works spaced">
+    <div class="columns medium-2">&nbsp;</div>
+    <div class="columns medium-8">
+      <h2>How This Works</h2>
+
+      <p class="muted-text">
+        SpyREST automatically generates REST API documentation based on real API calls. As the name suggests, SpyREST works as a software in the middle between a API client and the API to capture the web traffic. It then adds the necessary sugar and butter to bake the API documentation with enhanced information. You can run the following command to see it in practice:
+      </p>
+
+      <pre class="panel text-left" contenteditable>
+        curl -k -x "http://spyrest.com:9081" \
+        -H "Accept: application/vnd.github.v3+json" \
+        -H "x-spy-rest-desc: Searches assembly language repositories for the word tetris" \
+        "https://api.github.com/search/repositories?q=tetris+language:assembly&sort=stars&order=desc"
+      </pre>
+
+      <%= link_to 'See Generated Documentation', api_versions_path(api_host: 'api.github.com'), class: 'button success' %>
+
+    </div>
+    <div class="columns medium-2">&nbsp;</div>
+  </section>
+
+
+  <section class="row full-width text-center people-love spaced">
+    <div class="columns medium-2">&nbsp;</div>
+    <div class="columns medium-8">
+      <h3>People Love SpyREST</h3>
+
+      <blockquote class="twitter-tweet" lang="en"><p>Beautiful auto generated REST API <a href="https://twitter.com/hashtag/documentation?src=hash">#documentation</a> <a href="http://t.co/Ro0WiDnuhq">http://t.co/Ro0WiDnuhq</a> <a href="https://twitter.com/hashtag/spyrest?src=hash">#spyrest</a> <a href="https://twitter.com/hashtag/restful?src=hash">#restful</a> <a href="https://twitter.com/hashtag/api?src=hash">#api</a> &#10;List your APIs for free on <a href="https://twitter.com/mashape">@mashape</a> now!</p>&mdash; Mashape (@mashape) <a href="https://twitter.com/mashape/status/563789841557901314">February 6, 2015</a></blockquote>
+      <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+      <blockquote class="twitter-tweet" lang="en"><p>Interesting read, &quot;Ask HN: What&#39;s the best way to write an API spec?&quot; <a href="https://t.co/WtuVwPa4FT">https://t.co/WtuVwPa4FT</a> <a href="https://twitter.com/hashtag/api?src=hash">#api</a> <a href="https://twitter.com/Swagger">@swagger</a> <a href="https://twitter.com/hashtag/apiary?src=hash">#apiary</a> <a href="https://twitter.com/hashtag/spyrest?src=hash">#spyrest</a></p>&mdash; Chris Rickard (@chrisrickard) <a href="https://twitter.com/chrisrickard/status/557270932176109568">January 19, 2015</a></blockquote>
+      <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+      <blockquote class="twitter-tweet" lang="en"><p>Show HN: <a href="http://t.co/fZTCklUF4H">http://t.co/fZTCklUF4H</a> – autmatically generates beautiful REST documentation. <a href="http://t.co/jRekfhozRP">http://t.co/jRekfhozRP</a></p>&mdash; Show HN Daily (@ShowHNDaily) <a href="https://twitter.com/ShowHNDaily/status/555046627816112130">January 13, 2015</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+    </div>
+    <div class="columns medium-2">&nbsp;</div>
+  </section>
+</div>
