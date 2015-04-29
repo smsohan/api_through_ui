@@ -61,6 +61,10 @@
     </div>
   </div>
 
+  <% if show_comments? %>
+    <%= render partial: 'layouts/comments' %>
+  <% end %>
+
   <footer class="text-center spaced">
     <%= link_to 'https://www.mashape.com/' do %>
       <%= image_tag 'footer.png', class: 'footer-image' %>

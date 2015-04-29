@@ -4,9 +4,18 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :add_home_breadcrumb
 
+  helper_method :show_comments?
+
+  protected
+  def show_comments?
+    true
+  end
+
+
   private
   def add_home_breadcrumb
     add_breadcrumb "Home", :root_path
   end
+
 
 end

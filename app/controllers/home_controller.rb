@@ -4,4 +4,10 @@ class HomeController < ApplicationController
 
   def index
   end
+
+  protected
+  def show_comments?
+    false
+  end
+
 end
