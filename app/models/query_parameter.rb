@@ -14,7 +14,7 @@ class QueryParameter
     return 'Float' if float?(example_value)
     return 'String (Time ISO8601)' if datetime?(example_value)
     return 'Date' if date?(example_value)
-    return 'Date' if boolean?(example_value)
+    return 'Boolean' if boolean?(example_value)
     return 'String'
   end
 
