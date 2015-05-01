@@ -12,7 +12,7 @@ class QueryParameter
     example_value = example_values.first
     return 'Integer' if integer?(example_value)
     return 'Float' if float?(example_value)
-    return 'DateTime' if datetime?(example_value)
+    return 'String (Time ISO8601)' if datetime?(example_value)
     return 'Date' if date?(example_value)
     return 'Date' if boolean?(example_value)
     return 'String'
@@ -34,7 +34,7 @@ class QueryParameter
   end
 
   def datetime?(value)
-    value.to_time
+    Time.iso8601(value)
   rescue
     false
   end
