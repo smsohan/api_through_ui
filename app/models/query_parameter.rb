@@ -14,6 +14,7 @@ class QueryParameter
     return 'Float' if float?(example_value)
     return 'DateTime' if datetime?(example_value)
     return 'Date' if date?(example_value)
+    return 'Date' if boolean?(example_value)
     return 'String'
   end
 
@@ -40,6 +41,12 @@ class QueryParameter
 
   def date?(value)
     value.to_date
+  rescue
+    false
+  end
+
+  def boolean?(value)
+    ['true', 'false'].include?(value.downcase)
   rescue
     false
   end
