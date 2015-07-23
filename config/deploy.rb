@@ -3,6 +3,8 @@ lock '3.3.5'
 set :application, 'api_through_ui'
 set :repo_url, 'git@github.com:smsohan/api_through_ui.git'
 
+set :use_sudo, true
+
 set :linked_dirs, fetch(:linked_dirs, []).push('secrets')
 
 SSHKit.config.command_map[:build_and_run] = "#{current_path}/build_and_run.sh"
@@ -30,7 +32,7 @@ namespace :deploy do
         last_release = capture('ls', '-al | tail -2 | head -1')
         if last_release
           last_release_dir = last_release.strip.split.last
-          last_gemfile_lock = capture('sha256sum', last_release_dir + '/Gemfile.lock').strip.split.first
+          last_gemfile_lock = begin; capture('sha256sum', last_release_dir + '/Gemfile.lock').strip.split.first; rescue ''; end
         end
       end
 
