@@ -7,7 +7,9 @@ class ApiExamplesControllerTest < ActionController::TestCase
 
   test 'it destroys the example' do
     delete :destroy, id: @api_example.id
-    ApiExample.find(@api_example.id).must_equal nil
+    assert_raises Mongoid::Errors::DocumentNotFound do
+      ApiExample.find(id: @api_example.id)
+    end
   end
 
 end
