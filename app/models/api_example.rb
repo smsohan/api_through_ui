@@ -3,6 +3,7 @@ class ApiExample
 
   field :host, type: String
   field :url, type: String
+  field :action, type: String
   field :fullURL, type: String, as: :full_url
   field :http_method, type: String
   field :version, type: String

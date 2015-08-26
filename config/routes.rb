@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   end
   resources :api_versions, only: [:index, :show]
   resources :api_resources, only: [:index, :show]
+  resources :api_examples, only: [:destroy]
 
   get 'api_examples/curl/:id' => 'api_examples#curl', as: :curl_api_example
   get 'api_actions/details', as: :details_api_action
