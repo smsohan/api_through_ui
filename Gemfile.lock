@@ -82,6 +82,10 @@ GEM
       responders
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
+    dotenv (2.0.2)
+    dotenv-rails (2.0.2)
+      dotenv (= 2.0.2)
+      railties (~> 4.0)
     erubis (2.7.0)
     execjs (2.2.2)
     foundation-rails (5.4.5.0)
@@ -215,6 +219,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   database_cleaner
   devise
+  dotenv-rails (~> 2.0)
   foundation-rails
   github-markdown
   jquery-rails

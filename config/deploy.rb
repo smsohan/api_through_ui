@@ -13,6 +13,8 @@ set :use_docker, fetch(:use_docker, true)
 
 set :rbenv_ruby, "2.2.2"
 set :rbenv_type, :system
+set :rails_env, "production"
+set :assets_roles, :app
 
 
 namespace :deploy do
