@@ -65,6 +65,7 @@ namespace :deploy do
   task :standalone do
     on roles(:app) do
       within current_path do
+        execute 'bundle'
         execute 'bundle exec rake assets:precompile'
         execute 'svc -d /service/unicorn'
         execute 'svc -u /service/unicorn'
@@ -73,8 +74,8 @@ namespace :deploy do
   end
 
   task :restart do
-    if fetch(:use_docker) do
-      invoke 'deploy:build_and_run'
+    if fetch(:use_docker)
+      invoke 'deploy:docker'
     else
       invoke 'deploy:standalone'
     end
