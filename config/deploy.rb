@@ -5,9 +5,11 @@ set :repo_url, 'git@github.com:smsohan/api_through_ui.git'
 
 set :use_sudo, true
 
-set :linked_dirs, fetch(:linked_dirs, []).push('secrets')
+set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
 
 SSHKit.config.command_map[:build_and_run] = "#{current_path}/build_and_run.sh"
+
+set :use_docker, fetch(:use_docker, true)
 
 namespace :deploy do
 
@@ -20,7 +22,7 @@ namespace :deploy do
     end
   end
 
-  task :build_and_run do
+  task :docker do
     on roles(:app) do
 
       last_gemfile_lock = nil
@@ -60,6 +62,24 @@ namespace :deploy do
     end
   end
 
-  after :finished, :build_and_run
+  task :standalone do
+    on roles(:app) do
+      within current_path do
+        execute 'bundle exec rake assets:precompile'
+        execute 'svc -d /service/unicorn'
+        execute 'svc -u /service/unicorn'
+      end
+    end
+  end
+
+  task :restart do
+    if fetch(:use_docker) do
+      invoke 'deploy:build_and_run'
+    else
+      invoke 'deploy:standalone'
+    end
+  end
+
+  after :finished, 'deploy:restart'
 
 end
