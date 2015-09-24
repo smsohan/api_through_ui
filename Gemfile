@@ -14,7 +14,7 @@ gem 'foundation-rails'
 gem 'breadcrumbs_on_rails'
 gem 'github-markdown'
 gem 'devise'
-gem "dotenv-rails", "~> 2.0"
+gem "dotenv-rails", "~> 2.0", require: 'dotenv/rails-now'
 
 group :development, :test do
   gem 'byebug'
