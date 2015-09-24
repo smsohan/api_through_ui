@@ -11,6 +11,10 @@ SSHKit.config.command_map[:build_and_run] = "#{current_path}/build_and_run.sh"
 
 set :use_docker, fetch(:use_docker, true)
 
+set :rbenv_ruby, "2.2.2"
+set :rbenv_type, :system
+
+
 namespace :deploy do
 
   task :restart_all do
@@ -65,8 +69,7 @@ namespace :deploy do
   task :standalone do
     on roles(:app) do
       within current_path do
-        execute 'bundle'
-        execute 'bundle exec rake assets:precompile'
+        invoke 'deploy:compile_assets'
         execute 'svc -d /service/unicorn'
         execute 'svc -u /service/unicorn'
       end

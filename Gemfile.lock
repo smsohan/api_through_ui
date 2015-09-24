@@ -52,6 +52,15 @@ GEM
       i18n
       rake (>= 10.0.0)
       sshkit (~> 1.3)
+    capistrano-bundler (1.1.4)
+      capistrano (~> 3.1)
+      sshkit (~> 1.2)
+    capistrano-rails (1.1.3)
+      capistrano (~> 3.1)
+      capistrano-bundler (~> 1.1)
+    capistrano-rbenv (2.0.3)
+      capistrano (~> 3.1)
+      sshkit (~> 1.3)
     capistrano-stats (1.1.1)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
@@ -201,6 +210,8 @@ DEPENDENCIES
   breadcrumbs_on_rails
   byebug
   capistrano
+  capistrano-rails (~> 1.1)
+  capistrano-rbenv (~> 2.0)
   coffee-rails (~> 4.1.0)
   database_cleaner
   devise
@@ -216,3 +227,6 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
   unicorn
   web-console (~> 2.0)
+
+BUNDLED WITH
+   1.10.6

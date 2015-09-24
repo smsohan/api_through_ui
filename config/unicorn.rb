@@ -1,4 +1,4 @@
-app_dir = "/api_through_ui"
+app_dir = Dir.pwd
 
 working_directory app_dir
 

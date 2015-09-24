@@ -21,4 +21,6 @@ group :development, :test do
   gem 'spring'
   gem 'database_cleaner'
   gem 'capistrano'
+  gem 'capistrano-rails', '~> 1.1'
+  gem 'capistrano-rbenv', '~> 2.0'
 end
