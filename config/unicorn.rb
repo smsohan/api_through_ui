@@ -8,5 +8,5 @@ stderr_path "#{app_dir}/log/unicorn.stderr.log"
 stdout_path "#{app_dir}/log/unicorn.stdout.log"
 
 worker_processes 1
-listen "/tmp/unicorn.sock", :backlog => 64
+listen "127.0.0.1:#{ENV.fetch("PORT")}", tcp_nopush: true
 timeout 30
