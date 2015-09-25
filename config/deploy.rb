@@ -1,10 +1,11 @@
 lock '3.3.5'
 
 set :application, 'api_through_ui'
-set :repo_url, 'git@github.com:smsohan/api_through_ui.git'
+set :repo_url, 'https://github.com/smsohan/api_through_ui.git'
 
 set :use_sudo, true
 
+set :linked_files, fetch(:linked_files, []).push(".env.production")
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
 
 SSHKit.config.command_map[:build_and_run] = "#{current_path}/build_and_run.sh"
@@ -16,8 +17,30 @@ set :rbenv_type, :system
 set :rails_env, "production"
 set :assets_roles, :app
 
+# set :rails_user, 'rails'
+
+# module SSHKit
+#   class Command
+#     def user(&block)
+#       "sudo -- sh -c '%s'" % %Q{#{yield}}
+#     end
+#   end
+# end
+
+set :tmp_dir, File.join(fetch(:tmp_dir), ENV['SSH_USER'])
+
+Rake::Task['deploy:log_revision'].clear_actions
+
 
 namespace :deploy do
+
+  task :allow_write_to_tmp do
+    # puts "CALLED"
+    # on roles(:app) do
+    #   execute "sudo chmod -R a+w #{fetch(:tmp_dir)}"
+    # end
+  end
+
 
   task :restart_all do
     on roles(:app) do
@@ -87,5 +110,8 @@ namespace :deploy do
   end
 
   after :finished, 'deploy:restart'
+  # before :starting, :ensure_user do
 
+  # end
 end
+
