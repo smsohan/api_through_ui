@@ -17,30 +17,19 @@ set :rbenv_type, :system
 set :rails_env, "production"
 set :assets_roles, :app
 
-# set :rails_user, 'rails'
-
-# module SSHKit
-#   class Command
-#     def user(&block)
-#       "sudo -- sh -c '%s'" % %Q{#{yield}}
-#     end
-#   end
-# end
-
-set :tmp_dir, File.join(fetch(:tmp_dir), ENV['SSH_USER'])
+set :pty, true
 
 Rake::Task['deploy:log_revision'].clear_actions
 
+module SSHKit
+  class Command
+    def user(&block)
+      "sudo -E -u root #{environment_string + " " unless environment_string.empty?}-- sh -c '%s'" % %Q{#{yield}}
+    end
+  end
+end
 
 namespace :deploy do
-
-  task :allow_write_to_tmp do
-    # puts "CALLED"
-    # on roles(:app) do
-    #   execute "sudo chmod -R a+w #{fetch(:tmp_dir)}"
-    # end
-  end
-
 
   task :restart_all do
     on roles(:app) do
@@ -95,8 +84,12 @@ namespace :deploy do
     on roles(:app) do
       within current_path do
         invoke 'deploy:compile_assets'
-        execute 'svc -d /service/unicorn'
-        execute 'svc -u /service/unicorn'
+
+        as :root do
+          with path: "/bin:/usr/bin:/usr/local/bin" do
+            execute :svc, '-t /service/api_through'
+          end
+        end
       end
     end
   end
@@ -110,8 +103,5 @@ namespace :deploy do
   end
 
   after :finished, 'deploy:restart'
-  # before :starting, :ensure_user do
-
-  # end
 end
 
