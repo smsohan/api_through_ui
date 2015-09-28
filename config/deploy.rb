@@ -87,7 +87,7 @@ namespace :deploy do
 
         as :root do
           with path: "/bin:/usr/bin:/usr/local/bin" do
-            execute :svc, '-t /service/api_through'
+            execute :svc, '-t /service/api_through_ui'
           end
         end
       end
