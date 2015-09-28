@@ -48,10 +48,22 @@ class ApiExample
     []
   end
 
-  def prettified_response
-    JSON.pretty_generate(JSON.parse(stripped_response_body))
+  def stripped?
+    strippedResponseBody.present?
+  end
+
+  def prettified_json(json)
+    JSON.pretty_generate(JSON.parse(json))
   rescue
-    stripped_response_body
+    json
+  end
+
+  def prettified_stripped_response
+    prettified_json(stripped_response_body)
+  end
+
+  def prettified_response
+    prettified_json(response_body)
   end
 
 end

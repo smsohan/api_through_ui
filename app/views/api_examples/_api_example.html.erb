@@ -50,11 +50,20 @@
       </pre>
 
       <% if api_example.response_body.present? %>
-      <h4 class="subheader"> Response Body</h4>
-      <p class="info label"> Shortened for readability </p>
-      <pre class="panel">
+
+        <h4 class="subheader"> Response Body</h4>
+
+        <% if api_example.stripped? %>
+          <p class="info label"> Shortened for readability </p>
+<pre class="panel">
+<%= api_example.prettified_stripped_response %>
+</pre>
+        <% else %>
+          <p class="info label"> Actual Response </p>
+<pre class="panel">
 <%= api_example.prettified_response %>
-      </pre>
+</pre>
+        <% end %>
       <% end %>
 
       <% if write_enabled? %>
