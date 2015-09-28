@@ -22,14 +22,26 @@ class ApiAction
     end
   end
 
-  def description
+  def custom_description
     options = {api_host: api_host.name,
       api_version: api_version.name,
       api_resource: api_resource.name,
       api_action: name}
 
-    ApiActionDescription.where(options).first ||
+    ApiActionDescription.where(options).first
+  end
+
+  def default_description
+    options = {api_host: api_host.name,
+      api_version: api_version.name,
+      api_resource: api_resource.name,
+      api_action: name}
+
     ApiActionDescription.new(options.merge(description: default_description))
+  end
+
+  def description
+    custom_description || default_description
   end
 
   def default_description
