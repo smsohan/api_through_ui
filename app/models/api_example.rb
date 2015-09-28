@@ -19,6 +19,8 @@ class ApiExample
   field :requiresAuth, type: Boolean, as: :requires_auth, default: false
   field :userId, type: String, as: :user_id
 
+  include Mongoid::Attributes::Dynamic
+
   belongs_to :user
 
   SPYREST_HEADER_PREFIX = 'x-spy-rest-'
