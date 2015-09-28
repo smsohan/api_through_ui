@@ -4,9 +4,11 @@
 
 
 <h3 class="subheader">Description
-<%= link_to '', id: 'edit-description-link' do %>
-  <i class="fa fa-edit"></i>
-<% end %>
+  <% if write_enabled? %>
+    <%= link_to '', id: 'edit-description-link' do %>
+      <i class="fa fa-edit"></i>
+    <% end %>
+  <% end %>
 </h3>
 
 <% if @api_action.api_examples.count == 0 %>
@@ -14,7 +16,6 @@
   <div class="panel callout">
     There are no documentations to show for this API Action.
   <div>
-
 
 <% else %>
 

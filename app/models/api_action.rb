@@ -37,14 +37,14 @@ class ApiAction
       api_resource: api_resource.name,
       api_action: name}
 
-    ApiActionDescription.new(options.merge(description: default_description))
+    ApiActionDescription.new(options.merge(description: default_description_text))
   end
 
   def description
     custom_description || default_description
   end
 
-  def default_description
+  def default_description_text
     description = []
 
     parameters = query_parameters

@@ -57,8 +57,10 @@
       </pre>
       <% end %>
 
-      <%= button_to api_example_path(api_example.id), class: 'button secondary', method: :delete, data: {confirm: 'Are you Sure?'} do %>
-        <i class="fa fa-trash"></i> Delete this Example
+      <% if write_enabled? %>
+            <%= button_to api_example_path(api_example.id), class: 'button secondary', method: :delete, data: {confirm: 'Are you Sure?'} do %>
+              <i class="fa fa-trash"></i> Delete this Example
+            <% end %>
       <% end %>
 
     </div>

@@ -1,4 +1,6 @@
 class ApiActionDescriptionsController < ApplicationController
+  before_action :require_write_enabled
+
   def create
     api_action_description = ApiActionDescription.new(descriptions_params)
     api_action_description.save!

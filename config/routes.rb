@@ -27,6 +27,9 @@ Rails.application.routes.draw do
       post :preview
     end
   end
-
-  root 'home#index'
+  if ApiThroughUi::Application.config.write_enabled
+    root 'home#index'
+  else
+    root 'api_hosts#index'
+  end
 end
