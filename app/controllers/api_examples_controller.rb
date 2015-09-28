@@ -1,5 +1,6 @@
 class ApiExamplesController < ApplicationController
   before_action :load_api_example
+  before_action :require_write_enabled, only: :destroy
 
   def curl
   end
