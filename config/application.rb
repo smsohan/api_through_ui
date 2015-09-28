@@ -31,6 +31,6 @@ module ApiThroughUi
 
     config.autoload_paths << Rails.root.join('lib')
     config.assets.initialize_on_precompile = false
-    config.write_enabled = false
+    config.write_enabled = true
   end
 end
