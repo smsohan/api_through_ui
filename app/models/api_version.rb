@@ -56,4 +56,16 @@ class ApiVersion
     end
   end
 
+  def clear!
+    api_resources.each do |resource|
+      resource.api_actions.each do |action|
+        description = action.custom_description
+        action.custom_description.destroy if description
+        action.api_examples.each do |example|
+          example.destroy
+        end
+      end
+    end
+  end
+
 end
