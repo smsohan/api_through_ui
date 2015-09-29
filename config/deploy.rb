@@ -108,7 +108,7 @@ namespace :deploy do
     end
   end
 
-  after :published, 'deploy:cleanup_git_ssh'
+  after :cleanup, 'deploy:cleanup_git_ssh'
   after :finished, 'deploy:restart'
   after :failed, 'deploy:cleanup_git_ssh'
 
