@@ -12,6 +12,7 @@ class ApiVersion
   end
 
   def export
+    puts "exporting for #{api_host.name} #{name} total examples: #{api_examples.count}"
     file_index = 0
     export_to_file = Proc.new do |zipfile, model|
       file_index += 1
@@ -20,7 +21,7 @@ class ApiVersion
       end
     end
 
-    zipfile_path = Tempfile.new("export-#{api_host.name}-#{name}.zip").path
+    zipfile_path = "export-#{api_host.name}-#{name}.zip"
 
     Zip::File.open(zipfile_path, Zip::File::CREATE) do |zipfile|
       api_resources.each do |resource|

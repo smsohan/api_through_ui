@@ -28,4 +28,15 @@ class ApiVersionTest < ActiveSupport::TestCase
 
     File.unlink(exported)
   end
+
+  test 'clear!' do
+    old_example = ApiExample.create!(host: 'test.some.host',  version: 'v0', resource: 'resource', action: 'GET /something')
+    old_desc = ApiActionDescription.create!(api_host: 'test.some.host', api_version: 'v0', api_resource: 'resource', api_action: 'GET /something', description: 'custom')
+
+    api_version = ApiVersion.new(api_host: ApiHost.new(name: 'test.some.host'), name: 'v0')
+    api_version.clear!
+
+    assert_equal ApiExample.count, 0
+    assert_equal ApiActionDescription.count, 0
+  end
 end
