@@ -47,6 +47,11 @@ class ApiVersion
           hash['api_example'].delete('_id')
           ApiExample.new(hash['api_example'].merge('host' => destination_host)).save!
         end
+
+        if hash.has_key?('api_action_description')
+          hash['api_action_description'].delete('_id')
+          ApiActionDescription.new(hash['api_action_description'].merge('api_host' => destination_host)).save!
+        end
       end
     end
   end
