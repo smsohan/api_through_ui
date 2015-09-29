@@ -43,7 +43,7 @@ class ApiExample
   end
 
   def response_fields_summary_to_markdown
-    Markdownizer.to_md(JSON.parse(stripped_response_body))
+    Markdownizer.to_md(JSON.parse(stripped_or_actual_response_body))
   rescue
     []
   end
@@ -64,6 +64,10 @@ class ApiExample
 
   def prettified_response
     prettified_json(response_body)
+  end
+
+  def stripped_or_actual_response_body
+    stripped_response_body || response_body
   end
 
 end
