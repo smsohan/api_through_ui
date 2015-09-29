@@ -17,8 +17,6 @@ set :rbenv_type, :system
 set :rails_env, "production"
 set :assets_roles, :app
 
-set :tmp_dir, File.join(fetch(:tmp_dir), ENV['SSH_USER']).to_s
-
 set :pty, true
 
 Rake::Task['deploy:log_revision'].clear_actions
@@ -104,7 +102,15 @@ namespace :deploy do
     end
   end
 
+  task :cleanup_git_ssh do
+    on roles(:app) do
+      execute :rm, fetch(:git_environmental_variables)[:git_ssh]
+    end
+  end
+
+  after :published, 'deploy:cleanup_git_ssh'
   after :finished, 'deploy:restart'
+  after :failed, 'deploy:cleanup_git_ssh'
 
 end
 
