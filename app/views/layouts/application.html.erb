@@ -16,7 +16,9 @@
     <ul class="title-area">
       <li class="name">
         <h1>SpyREST</h1>
-        <p class="muted-text">Supported by <%=link_to 'Mashape', 'https://www.mashape.com/' %></p>
+        <% if write_enabled? %>
+          <p class="muted-text">Supported by <%=link_to 'Mashape', 'https://www.mashape.com/' %></p>
+        <% end %>
       </li>
       <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
     </ul>
@@ -66,8 +68,10 @@
   <% end %>
 
   <footer class="text-center spaced">
-    <%= link_to 'https://www.mashape.com/' do %>
-      <%= image_tag 'footer.png', class: 'footer-image' %>
+    <% if write_enabled? %>
+      <%= link_to 'https://www.mashape.com/' do %>
+        <%= image_tag 'footer.png', class: 'footer-image' %>
+      <% end %>
     <% end %>
   </footer>
 
