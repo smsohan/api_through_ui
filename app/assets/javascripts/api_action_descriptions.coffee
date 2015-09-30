@@ -1,4 +1,4 @@
-class ApiActionDescriptionView
+class MarkdownView
   constructor: (options)->
     @handleFormSubmissions(options)
 
@@ -32,4 +32,4 @@ class ApiActionDescriptionView
 
 
 
-@ApiActionDescriptionView = ApiActionDescriptionView
+@MarkdownView = MarkdownView

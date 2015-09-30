@@ -69,4 +69,8 @@ class ApiVersion
     end
   end
 
+  def description
+    ApiVersionDescription.where(api_host: api_host.name, api_version: name).first
+  end
+
 end
