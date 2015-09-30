@@ -71,7 +71,7 @@
     <dl id="example-tabs" class="tabs vertical" data-tab>
       <% api_examples.each_with_index do |api_example, index| %>
         <dd class="<%= index == 0 && 'active'%>" >
-          <%= link_to truncate(api_example.description, length: 30) || "Example #{index + 1}",  "#panel#{index}" %>
+          <%= link_to api_example.description, length: 100) || "Example #{index + 1}",  "#panel#{index}" %>
         </dd>
       <% end %>
     </dl>
