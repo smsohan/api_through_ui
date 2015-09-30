@@ -1,76 +1,84 @@
-<h2>Resources</h2>
-
-<p>Select an API Resource for version <code><%= @api_version.name %></code> from the following list</p>
-
-<ol>
-  <% @api_resources.each do |api_resource| %>
-  <li>
-    <%= link_to api_resource.name, api_resource_path(api_resource.name, api_host: api_resource.api_host.name, api_version: api_resource.api_version.name) %>
-
-    <ul class="no-bullet small">
-      <% api_resource.api_actions.each do |api_action| %>
-      <li><%= link_to api_action.name, details_api_action_path(api_resource: api_resource.name, api_host: api_resource.api_host.name, api_version: api_resource.api_version.name, api_action: api_action.name) %></li>
+<div class="row">
+  <div class="left columns small-12 large-6">
+    <h3 class="subheader">Overview
+      <% if write_enabled? %>
+      <%= link_to '', id: 'edit-description-link' do %>
+      <i class="fa fa-edit"></i>
       <% end %>
-    </ul>
-  </li>
-  <% end %>
-</ol>
-
-<h3 class="subheader">Overview
-  <% if write_enabled? %>
-  <%= link_to '', id: 'edit-description-link' do %>
-  <i class="fa fa-edit"></i>
-  <% end %>
-  <% end %>
-</h3>
+      <% end %>
+    </h3>
 
 
-<div class="row subheader">
-  <div id="description" class="columns small-12 large-6 large-offset-2">
-    <%=raw markdown @api_version.description.try(:description) %>
-  </div>
-</div>
-
-<div class="row subheader">
-  <div id="action-description-form-container" class="columns small-12 large-6 large-offset-2 hide">
-
-    <dl class="tabs" data-tab>
-      <dd class="active"><a href="#edit-description">Write</a></dd>
-      <dd><%= link_to 'Preview', "#preview", data: {path: preview_api_action_descriptions_path}, method: :post, remote: true, id: 'preview-button' %></dd>
-    </dl>
-
-    <%= form_for @api_version.description || ApiVersionDescription.new_for_resource(@api_version), remote: true do |form| %>
-
-    <%= form.hidden_field :api_host %>
-    <%= form.hidden_field :api_version %>
-
-    <div class="tabs-content">
-      <div class="content active" id="edit-description">
-        <label>
-          Describe this action in markdown
-          <%= form.text_area :description, placeholder: "Describe this version in markdown...", rows: 25 %>
-        </label>
+    <div class="row subheader">
+      <div id="description" class="columns small-12 large-10">
+        <%=raw markdown @api_version.description.try(:description) %>
       </div>
+    </div>
 
-      <div class="content" id="preview">
+    <div class="row subheader">
+      <div id="action-description-form-container" class="columns small-12 large-10 hide">
+
+        <dl class="tabs" data-tab>
+          <dd class="active"><a href="#edit-description">Write</a></dd>
+          <dd><%= link_to 'Preview', "#preview", data: {path: preview_api_action_descriptions_path}, method: :post, remote: true, id: 'preview-button' %></dd>
+        </dl>
+
+        <%= form_for @api_version.description || ApiVersionDescription.new_for_resource(@api_version), remote: true do |form| %>
+
+        <%= form.hidden_field :api_host %>
+        <%= form.hidden_field :api_version %>
+
+        <div class="tabs-content">
+          <div class="content active" id="edit-description">
+            <label>
+              Describe this action in markdown
+              <%= form.text_area :description, placeholder: "Describe this version in markdown...", rows: 25 %>
+            </label>
+          </div>
+
+          <div class="content" id="preview">
+
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="small-12 large-6 columns">
+            <%= form.submit 'Update', class:"button", data: {disable_with: 'Updating...'} %>
+            <% if @api_version.description %>
+            <%= link_to api_version_description_path(@api_version.description), data: {method: :delete, confirm: 'Are you sure?'} do %>
+            <i class="fa fa-trash"></i> Delete this Overview
+            <% end %>
+            <% end %>
+          </div>
+        </div>
+        <% end %>
 
       </div>
     </div>
 
-    <div class="row">
-      <div class="small-12 large-6 columns">
-        <%= form.submit 'Update', class:"button", data: {disable_with: 'Updating...'} %>
-        <% if @api_version.description %>
-        <%= link_to api_version_description_path(@api_version.description), data: {method: :delete, confirm: 'Are you sure?'} do %>
-          <i class="fa fa-trash"></i> Delete this Overview
-        <% end %>
-        <% end %>
-      </div>
-    </div>
-    <% end %>
+  </div>
+
+  <div class="right columns small-12 large-6">
+    <h2>Resources</h2>
+
+    <p>Select an API Resource for version <code><%= @api_version.name %></code> from the following list</p>
+    <ol>
+      <% @api_resources.each do |api_resource| %>
+      <li>
+        <%= link_to api_resource.name, api_resource_path(api_resource.name, api_host: api_resource.api_host.name, api_version: api_resource.api_version.name) %>
+
+        <ul class="no-bullet small">
+          <% api_resource.api_actions.each do |api_action| %>
+          <li><%= link_to api_action.name, details_api_action_path(api_resource: api_resource.name, api_host: api_resource.api_host.name, api_version: api_resource.api_version.name, api_action: api_action.name) %></li>
+          <% end %>
+        </ul>
+      </li>
+      <% end %>
+    </ol>
 
   </div>
 </div>
+
 
 <script>
 $(function(){
