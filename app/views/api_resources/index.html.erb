@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="left columns small-12 large-7">
+  <div class="left columns small-12 large-6">
     <h3 class="subheader">Overview
       <% if write_enabled? %>
       <%= link_to '', id: 'edit-description-link' do %>
@@ -42,7 +42,7 @@
         </div>
 
         <div class="row">
-          <div class="small-12 large-5 columns">
+          <div class="small-12 large-6 columns">
             <%= form.submit 'Update', class:"button", data: {disable_with: 'Updating...'} %>
             <% if @api_version.description %>
             <%= link_to api_version_description_path(@api_version.description), data: {method: :delete, confirm: 'Are you sure?'} do %>
