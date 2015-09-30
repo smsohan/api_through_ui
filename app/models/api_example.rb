@@ -75,6 +75,7 @@ class ApiExample
     json['host'] = new_host
     json['responseBody'].try(:gsub!, old_host, new_host)
     json['strippedResponseBody'].try(:gsub!, old_host, new_host)
+    json['fullURL'].try(:gsub!, old_host, new_host)
     create!(json)
   end
 
