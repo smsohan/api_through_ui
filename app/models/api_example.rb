@@ -70,4 +70,12 @@ class ApiExample
     stripped_response_body || response_body
   end
 
+  def self.import(json, new_host)
+    old_host = json['host']
+    json['host'] = new_host
+    json['responseBody'].try(:gsub!, old_host, new_host)
+    json['strippedResponseBody'].try(:gsub!, old_host, new_host)
+    create!(json)
+  end
+
 end

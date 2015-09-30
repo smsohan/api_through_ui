@@ -46,7 +46,7 @@ class ApiVersion
         hash = JSON.parse(json_content)
         if hash.has_key?('api_example')
           hash['api_example'].delete('_id')
-          ApiExample.new(hash['api_example'].merge('host' => destination_host)).save!
+          ApiExample.import(hash['api_example'], destination_host).save!
         end
 
         if hash.has_key?('api_action_description')

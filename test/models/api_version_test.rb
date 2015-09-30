@@ -2,7 +2,7 @@ require 'test_helper'
 
 class ApiVersionTest < ActiveSupport::TestCase
   test 'import and export works' do
-    old_example = ApiExample.create!(host: 'test.some.host',  version: 'v0', resource: 'resource', action: 'GET /something')
+    old_example = ApiExample.create!(host: 'test.some.host',  version: 'v0', resource: 'resource', action: 'GET /something', response_body: 'https://test.some.host/some/path' )
     old_desc = ApiActionDescription.create!(api_host: 'test.some.host', api_version: 'v0', api_resource: 'resource', api_action: 'GET /something', description: 'custom')
 
     api_version = ApiVersion.new(api_host: ApiHost.new(name: 'test.some.host'), name: 'v0')
@@ -19,6 +19,7 @@ class ApiVersionTest < ActiveSupport::TestCase
     assert_equal new_example.version, old_example.version
     assert_equal new_example.resource, old_example.resource
     assert_equal new_example.action, old_example.action
+    assert_equal new_example.response_body, 'https://prod.some.host/some/path'
 
     new_desc = ApiActionDescription.where(api_host: prod_host).first
     assert_equal new_desc.description, old_desc.description
