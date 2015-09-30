@@ -66,6 +66,8 @@ class ApiVersion
   end
 
   def clear!
+    description.try(:destroy)
+
     api_resources.each do |resource|
       resource.api_actions.each do |action|
         description = action.custom_description
