@@ -24,6 +24,9 @@ class ApiVersion
     zipfile_path = "export-#{api_host.name}-#{name}.zip"
 
     Zip::File.open(zipfile_path, Zip::File::CREATE) do |zipfile|
+
+      export_to_file[zipfile, description] if description
+
       api_resources.each do |resource|
         resource.api_actions.each do |action|
           description = action.custom_description
@@ -52,6 +55,11 @@ class ApiVersion
         if hash.has_key?('api_action_description')
           hash['api_action_description'].delete('_id')
           ApiActionDescription.new(hash['api_action_description'].merge('api_host' => destination_host)).save!
+        end
+
+        if hash.has_key?('api_version_description')
+          hash['api_version_description'].delete('_id')
+          ApiVersionDescription.new(hash['api_version_description'].merge('api_host' => destination_host)).save!
         end
       end
     end

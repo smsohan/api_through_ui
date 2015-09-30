@@ -4,6 +4,7 @@ class ApiVersionTest < ActiveSupport::TestCase
   test 'import and export works' do
     old_example = ApiExample.create!(host: 'test.some.host',  version: 'v0', resource: 'resource', action: 'GET /something', response_body: 'https://test.some.host/some/path' )
     old_desc = ApiActionDescription.create!(api_host: 'test.some.host', api_version: 'v0', api_resource: 'resource', api_action: 'GET /something', description: 'custom')
+    old_version_desc = ApiVersionDescription.create!(api_host: 'test.some.host', api_version: 'v0', description: 'custom 2')
 
     api_version = ApiVersion.new(api_host: ApiHost.new(name: 'test.some.host'), name: 'v0')
 
@@ -26,6 +27,10 @@ class ApiVersionTest < ActiveSupport::TestCase
     assert_equal new_desc.api_version, old_desc.api_version
     assert_equal new_desc.api_resource, old_desc.api_resource
     assert_equal new_desc.api_action, old_desc.api_action
+
+    new_version_desc = ApiVersionDescription.where(api_host: prod_host).first
+    assert_equal new_version_desc.description, old_version_desc.description
+    assert_equal new_version_desc.api_version, old_version_desc.api_version
 
     File.unlink(exported)
   end
